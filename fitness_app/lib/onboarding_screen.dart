@@ -160,7 +160,7 @@ class _OnBoardingScreenMobileColumnState
     return Column(
       children: [
         Container(
-          height: MediaQuery.of(context).size.width * 0.5,
+          height: MediaQuery.of(context).size.height * 0.5,
           width: MediaQuery.of(context).size.width * 0.5,
           padding: EdgeInsets.only(
             top: 60,
@@ -168,7 +168,14 @@ class _OnBoardingScreenMobileColumnState
             right: MediaQuery.of(context).size.width * 0.1,
           ),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30), color: Colors.purple),
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.purple,
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(5, 5),
+                  blurRadius: 50,
+                ),
+              ]),
         ),
         const SizedBox(
           height: 50,
