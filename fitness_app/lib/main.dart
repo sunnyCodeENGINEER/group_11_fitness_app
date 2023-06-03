@@ -1,3 +1,5 @@
+import 'package:fitness_app/create_account_screen.dart';
+import 'package:fitness_app/gender_select_screen.dart';
 import 'package:fitness_app/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const OnBoardingScreen(),
+      home: const GenderSelectScreen(),
     );
   }
 }
