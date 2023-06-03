@@ -11,10 +11,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child:
-          MediaQuery.of(context).size.width < MediaQuery.of(context).size.height
-              ? const OnBoardingScreenMobile()
-              : const OnBoardingScreenDesktop(),
+      child: MediaQuery.of(context).size.width <=
+              MediaQuery.of(context).size.height
+          ? const OnBoardingScreenMobile()
+          : const OnBoardingScreenDesktop(),
     );
   }
 }
