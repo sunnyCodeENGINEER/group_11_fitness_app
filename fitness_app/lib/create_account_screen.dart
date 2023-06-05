@@ -1,6 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace
-
-import 'package:fitness_app/typo.dart';
+import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccountScreen extends StatefulWidget {
@@ -49,99 +47,111 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            height: 150,
-            width: 300,
-            decoration: const BoxDecoration(
-              color: Colors.purple,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(100),
-                bottomRight: Radius.circular(100),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 150,
+                width: 300,
+                decoration: const BoxDecoration(
+                  color: Colors.purple,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(100),
+                    bottomRight: Radius.circular(100),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    "Create Your\nAccount",
+                    style: largeTitle,
+                  ),
+                ),
               ),
-            ),
-            child: Center(
-              child: Text(
-                "Create Your\nAccount",
-                style: largeTitle,
+              const SizedBox(
+                height: 30,
               ),
-            ),
-          ),
-          const SizedBox(
-            height: 30,
+              Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 300,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          labelText: 'Enter your Username.',
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    SizedBox(
+                      width: 300,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          labelText: 'Enter your password.',
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    SizedBox(
+                      width: 300,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          labelText: 'Confirm your password.',
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Checkbox(
+                            value: rememberMe,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                rememberMe = value!;
+                              });
+                            }),
+                        const Text('Remember Me'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           Center(
             child: Column(
               children: [
-                Container(
-                  width: 300,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: 'Enter your Username.',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  width: 300,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: 'Enter your Username.',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  width: 300,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: 'Enter your Username.',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Checkbox(
-                        value: rememberMe,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            rememberMe = value!;
-                          });
-                        }),
-                    const Text('Remember Me'),
-                  ],
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
                 const LargeAppButton(),
-                const SizedBox(
-                  height: 15,
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 20,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Already have an account?'),
+                      TextButton(
+                          onPressed: _signIn, child: const Text('Sign In'))
+                    ],
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Already have an account?'),
-                    TextButton(onPressed: _signIn, child: const Text('Sign In'))
-                  ],
-                )
               ],
             ),
           )
@@ -178,7 +188,7 @@ class _CreateAccountDesktopScreenState
         top: 70,
       ),
       child: Row(
-        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
@@ -201,84 +211,90 @@ class _CreateAccountDesktopScreenState
               ),
             ),
           ),
-          SizedBox(
-            width: (MediaQuery.of(context).size.width - 800) * 0.3,
-          ),
-          Center(
-            child: Column(
-              children: [
-                const Spacer(),
-                Container(
-                  width: 300,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+          Container(
+            margin: EdgeInsets.only(
+                right: MediaQuery.of(context).size.width * 0.08),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            labelText: 'Enter your Username.',
+                          ),
+                        ),
                       ),
-                      labelText: 'Enter your Username.',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  width: 300,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                      const SizedBox(
+                        height: 15,
                       ),
-                      labelText: 'Enter your Username.',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  width: 300,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            labelText: 'Enter your password.',
+                          ),
+                        ),
                       ),
-                      labelText: 'Enter your Username.',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Checkbox(
-                        value: rememberMe,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            rememberMe = value!;
-                          });
-                        }),
-                    const Text('Remember Me'),
-                  ],
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                const LargeAppButton(),
-                // const SizedBox(
-                //   height: 15,
-                // ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Already have an account?'),
-                    TextButton(onPressed: _signIn, child: const Text('Sign In'))
-                  ],
-                ),
-                // const Spacer(),
-              ],
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            labelText: 'Confirm your password.',
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Checkbox(
+                              value: rememberMe,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  rememberMe = value!;
+                                });
+                              }),
+                          const Text('Remember Me'),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      const LargeAppButton(),
+                      // const SizedBox(
+                      //   height: 15,
+                      // ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Already have an account?'),
+                          TextButton(
+                              onPressed: _signIn, child: const Text('Sign In'))
+                        ],
+                      ),
+                    ],
+                  )
+                  // const Spacer(),
+                ],
+              ),
             ),
           )
         ],
