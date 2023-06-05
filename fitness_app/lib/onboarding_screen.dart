@@ -67,9 +67,14 @@ class _OnBoardingScreenDesktopState extends State<OnBoardingScreenDesktop> {
                   width: MediaQuery.of(context).size.width * 0.4,
                   height: MediaQuery.of(context).size.height * 0.5,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.purple,
-                  ),
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.purple,
+                      boxShadow: const [
+                        BoxShadow(
+                          offset: Offset(5, 5),
+                          blurRadius: 50,
+                        )
+                      ]),
                 ),
               ],
             ),

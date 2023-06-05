@@ -1,5 +1,5 @@
 import 'package:fitness_app/create_account_screen.dart';
-import 'package:fitness_app/typo.dart';
+import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
 
 class GenderSelectScreen extends StatefulWidget {
@@ -33,36 +33,41 @@ class _GenderSelectMobileScreenState extends State<GenderSelectMobileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              Text(
-                'Personalize Your Account',
-                style: headerOne,
-              ),
-              Text(
-                'What is your Gender?',
-                style: headerTwo,
-              ),
-              const GenderCard(
-                icon: Icons.male,
-                gender: 'Male',
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const GenderCard(
-                icon: Icons.female,
-                gender: 'Female',
-              ),
-            ],
-          ),
-          const LargeAppButton(),
-        ],
-      )),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 50,
+        ),
+        child: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                Text(
+                  'Personalize Your Account',
+                  style: headerOne,
+                ),
+                Text(
+                  'What is your Gender?',
+                  style: headerTwo,
+                ),
+                const GenderCard(
+                  icon: Icons.male,
+                  gender: 'Male',
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const GenderCard(
+                  icon: Icons.female,
+                  gender: 'Female',
+                ),
+              ],
+            ),
+            const LargeAppButton(),
+          ],
+        )),
+      ),
     );
   }
 }

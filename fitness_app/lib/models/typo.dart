@@ -18,6 +18,18 @@ TextStyle headerOne = const TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+TextStyle pickerText = const TextStyle(
+  color: Colors.purple,
+  fontSize: 70,
+  fontWeight: FontWeight.bold,
+);
+
+TextStyle pickerTextDesktop = const TextStyle(
+  color: Colors.purple,
+  fontSize: 80,
+  fontWeight: FontWeight.bold,
+);
+
 TextStyle headerTwo = const TextStyle(
   color: Color.fromARGB(255, 112, 112, 112),
   fontSize: 20,
@@ -35,4 +47,10 @@ TextStyle subhedingTwo = const TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.bold,
   height: 2,
+);
+
+TextStyle mediumButtonText = const TextStyle(
+  color: Colors.white,
+  fontSize: 12,
+  fontWeight: FontWeight.bold
 );
