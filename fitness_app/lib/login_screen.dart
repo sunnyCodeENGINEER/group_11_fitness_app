@@ -1,34 +1,34 @@
+import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
 
-class CreateAccountScreen extends StatefulWidget {
-  const CreateAccountScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<CreateAccountScreen> createState() => _CreateAccountScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _CreateAccountScreenState extends State<CreateAccountScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: MediaQuery.of(context).size.width <=
               MediaQuery.of(context).size.height
-          ? const CreateAccountMobileScreen()
-          : const CreateAccountDesktopScreen(),
+          ? const LoginMobileScreen()
+          : const LoginDesktopScreen(),
     );
   }
 }
 
-class CreateAccountMobileScreen extends StatefulWidget {
-  const CreateAccountMobileScreen({super.key});
+class LoginMobileScreen extends StatefulWidget {
+  const LoginMobileScreen({super.key});
 
   @override
-  State<CreateAccountMobileScreen> createState() =>
-      _CreateAccountMobileScreenState();
+  State<LoginMobileScreen> createState() => _LoginMobileScreenState();
 }
 
-class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
+class _LoginMobileScreenState extends State<LoginMobileScreen> {
   bool rememberMe = false;
   bool signIn = false;
 
@@ -64,7 +64,7 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
                 ),
                 child: Center(
                   child: Text(
-                    "Create Your\nAccount",
+                    "Log In To Your\nAccount",
                     style: largeTitle,
                   ),
                 ),
@@ -103,17 +103,6 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                    SizedBox(
-                      width: 300,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          labelText: 'Confirm your password.',
-                        ),
-                      ),
-                    ),
                     const SizedBox(
                       height: 15,
                     ),
@@ -128,6 +117,14 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
                               });
                             }),
                         const Text('Remember Me'),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                            onPressed: _signIn,
+                            child: const Text('Forgot your password?'))
                       ],
                     ),
                   ],
@@ -146,9 +143,9 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Already have an account?'),
+                      const Text('Are you a new user?'),
                       TextButton(
-                          onPressed: _signIn, child: const Text('Sign In'))
+                          onPressed: _signIn, child: const Text('Sign Up'))
                     ],
                   ),
                 ),
@@ -161,16 +158,14 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
   }
 }
 
-class CreateAccountDesktopScreen extends StatefulWidget {
-  const CreateAccountDesktopScreen({super.key});
+class LoginDesktopScreen extends StatefulWidget {
+  const LoginDesktopScreen({super.key});
 
   @override
-  State<CreateAccountDesktopScreen> createState() =>
-      _CreateAccountDesktopScreenState();
+  State<LoginDesktopScreen> createState() => _LoginDesktopScreenState();
 }
 
-class _CreateAccountDesktopScreenState
-    extends State<CreateAccountDesktopScreen> {
+class _LoginDesktopScreenState extends State<LoginDesktopScreen> {
   bool rememberMe = false;
   bool signIn = false;
 
@@ -206,7 +201,7 @@ class _CreateAccountDesktopScreenState
             ),
             child: Center(
               child: Text(
-                "Create Your\nAccount",
+                "Log In To Your\nAccount",
                 style: largeTitleDesktop,
               ),
             ),
@@ -248,17 +243,6 @@ class _CreateAccountDesktopScreenState
                       const SizedBox(
                         height: 15,
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            labelText: 'Confirm your password.',
-                          ),
-                        ),
-                      ),
                       const SizedBox(
                         height: 15,
                       ),
@@ -275,19 +259,24 @@ class _CreateAccountDesktopScreenState
                           const Text('Remember Me'),
                         ],
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                              onPressed: _signIn,
+                              child: const Text('Forgot your password?'))
+                        ],
+                      ),
                       const SizedBox(
                         height: 15,
                       ),
                       const LargeAppButton(),
-                      // const SizedBox(
-                      //   height: 15,
-                      // ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('Already have an account?'),
+                          const Text('Are you a new user?'),
                           TextButton(
-                              onPressed: _signIn, child: const Text('Sign In'))
+                              onPressed: _signIn, child: const Text('Sign Up'))
                         ],
                       ),
                     ],
@@ -300,43 +289,5 @@ class _CreateAccountDesktopScreenState
         ],
       ),
     ));
-  }
-}
-
-class LargeAppButton extends StatefulWidget {
-  const LargeAppButton({super.key});
-
-  @override
-  State<LargeAppButton> createState() => _LargeAppButtonState();
-}
-
-class _LargeAppButtonState extends State<LargeAppButton> {
-  int a = 0;
-
-  void _incrementCounter() {
-    if (a < 1) {
-      setState(() {
-        a++;
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(
-        bottom: 50,
-      ),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.purple,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-            minimumSize: const Size(200, 60)),
-        onPressed: _incrementCounter,
-        child: Text("$a"),
-      ),
-    );
   }
 }

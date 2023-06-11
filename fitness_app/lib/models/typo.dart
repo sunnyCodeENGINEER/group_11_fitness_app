@@ -6,6 +6,12 @@ TextStyle largeTitle = const TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+TextStyle largeTitleBlack = const TextStyle(
+  color: Colors.black,
+  fontSize: 40,
+  fontWeight: FontWeight.bold,
+);
+
 TextStyle largeTitleDesktop = const TextStyle(
   color: Colors.white,
   fontSize: 60,
@@ -42,6 +48,12 @@ TextStyle subheading = const TextStyle(
   fontWeight: FontWeight.normal,
 );
 
+TextStyle subheadingBlack = const TextStyle(
+  color: Colors.black,
+  fontSize: 20,
+  fontWeight: FontWeight.w600,
+);
+
 TextStyle subhedingTwo = const TextStyle(
   color: Colors.purpleAccent,
   fontSize: 16,
@@ -50,7 +62,4 @@ TextStyle subhedingTwo = const TextStyle(
 );
 
 TextStyle mediumButtonText = const TextStyle(
-  color: Colors.white,
-  fontSize: 12,
-  fontWeight: FontWeight.bold
-);
+    color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold);

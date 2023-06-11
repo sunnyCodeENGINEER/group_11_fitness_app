@@ -51,14 +51,29 @@ class _GenderSelectMobileScreenState extends State<GenderSelectMobileScreen> {
                   'What is your Gender?',
                   style: headerTwo,
                 ),
-                const GenderCard(
+                // const GenderCard(
+                //   icon: Icons.male,
+                //   gender: 'Male',
+                // ),
+                // const SizedBox(
+                //   height: 20,
+                // ),
+                // const GenderCard(
+                //   icon: Icons.female,
+                //   gender: 'Female',
+                // ),
+              ],
+            ),
+            Column(
+              children: const [
+                GenderCard(
                   icon: Icons.male,
                   gender: 'Male',
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 20,
                 ),
-                const GenderCard(
+                GenderCard(
                   icon: Icons.female,
                   gender: 'Female',
                 ),

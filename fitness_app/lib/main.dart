@@ -2,6 +2,8 @@ import 'package:fitness_app/age_select_view.dart';
 import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/fill_profile_screen.dart';
 import 'package:fitness_app/gender_select_screen.dart';
+import 'package:fitness_app/main%20app%20views/home_screen.dart';
+import 'package:fitness_app/login_screen.dart';
 import 'package:fitness_app/onboarding_screen.dart';
 import 'package:fitness_app/select_meal_plan.dart';
 import 'package:fitness_app/select_workout_split.dart';
@@ -29,9 +31,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
-      home: const FillProfileScreen(),
+      home: const HomeMobileScreen(),
     );
   }
 }
