@@ -1,3 +1,4 @@
+import 'package:fitness_app/models/app_colors.dart';
 import 'package:flutter/material.dart';
 
 TextStyle largeTitle = const TextStyle(
@@ -20,6 +21,12 @@ TextStyle largeTitleDesktop = const TextStyle(
 
 TextStyle headerOne = const TextStyle(
   color: Colors.black,
+  fontSize: 30,
+  fontWeight: FontWeight.bold,
+);
+
+TextStyle headerOnePrimaryColor = TextStyle(
+  color: primaryAppColor,
   fontSize: 30,
   fontWeight: FontWeight.bold,
 );

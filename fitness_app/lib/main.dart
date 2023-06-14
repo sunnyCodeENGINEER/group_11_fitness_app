@@ -4,6 +4,7 @@ import 'package:fitness_app/fill_profile_screen.dart';
 import 'package:fitness_app/gender_select_screen.dart';
 import 'package:fitness_app/main%20app%20views/home_screen.dart';
 import 'package:fitness_app/login_screen.dart';
+import 'package:fitness_app/main%20app%20views/workout_screen.dart';
 import 'package:fitness_app/onboarding_screen.dart';
 import 'package:fitness_app/select_meal_plan.dart';
 import 'package:fitness_app/select_workout_split.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.purple,
       ),
-      home: const HomeMobileScreen(),
+      home: const WorkOutScreen(),
     );
   }
 }
