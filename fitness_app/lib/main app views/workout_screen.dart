@@ -127,7 +127,7 @@ class _WorkOutMobileScreenState extends State<WorkOutMobileScreen> {
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius:
-                      const BorderRadius.only(topLeft: Radius.circular(70)),
+                      const BorderRadius.only(topLeft: Radius.circular(40)),
                   boxShadow: [
                     BoxShadow(
                       offset: const Offset(-5, -1),
@@ -135,16 +135,23 @@ class _WorkOutMobileScreenState extends State<WorkOutMobileScreen> {
                       blurRadius: 30,
                     )
                   ]),
-              child: Expanded(
-                child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return MyListTile(
-                        title: modelSplit.workout.exercise.name,
-                        reps: modelSplit.workout.exercise.reps,
-                        sets: modelSplit.workout.exercise.sets);
-                  },
-                ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0,
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return MyListTile(
+                            title: modelSplit.workout.exercise.name,
+                            reps: modelSplit.workout.exercise.reps,
+                            sets: modelSplit.workout.exercise.sets);
+                      },
+                    ),
+                  )
+                ],
               ),
             )
           ],
