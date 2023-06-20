@@ -24,8 +24,6 @@ class PieChartPageState extends State {
                     touchCallback: (p0, pieTouchResponse) {
                       setState(() {
                         if (pieTouchResponse is FlLongPressEnd
-                            // ||
-                            // pieTouchResponse is FlPanEndEvent
                             ) {
                           touchedIndex = -1;
                         } else {
@@ -34,16 +32,6 @@ class PieChartPageState extends State {
                         }
                       });
                     },
-                    // touchCallback: (pieTouchResponse) {
-                    //   setState(() {
-                    //     if (pieTouchResponse.touchInput is FlLongPressEnd ||
-                    //         pieTouchResponse.touchInput is FlPanEnd) {
-                    //       touchedIndex = -1;
-                    //     } else {
-                    //       touchedIndex = pieTouchResponse.touchedSectionIndex;
-                    //     }
-                    //   });
-                    // },
                   ),
                   borderData: FlBorderData(show: false),
                   sectionsSpace: 0,

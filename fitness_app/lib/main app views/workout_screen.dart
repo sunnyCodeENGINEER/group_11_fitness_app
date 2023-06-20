@@ -145,9 +145,12 @@ class _WorkOutMobileScreenState extends State<WorkOutMobileScreen> {
                       itemCount: 5,
                       itemBuilder: (context, index) {
                         return MyListTile(
-                            title: modelSplit.workout.exercise.name,
-                            reps: modelSplit.workout.exercise.reps,
-                            sets: modelSplit.workout.exercise.sets);
+                          title: modelSplit.workout.exercise.name,
+                          reps: modelSplit.workout.exercise.reps,
+                          sets: modelSplit.workout.exercise.sets.toDouble(),
+                          unit_1: 'Sets',
+                          unit_2: 'Reps',
+                        );
                       },
                     ),
                   )
@@ -293,9 +296,12 @@ class _WorkOutDesktopScreenState extends State<WorkOutDesktopScreen> {
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return MyListTile(
-                        title: modelSplit.workout.exercise.name,
-                        reps: modelSplit.workout.exercise.reps,
-                        sets: modelSplit.workout.exercise.sets);
+                      title: modelSplit.workout.exercise.name,
+                      reps: modelSplit.workout.exercise.reps,
+                      sets: modelSplit.workout.exercise.sets.toDouble(),
+                      unit_1: 'Sets',
+                      unit_2: 'Reps',
+                    );
                   },
                 ),
               ),
@@ -309,10 +315,17 @@ class _WorkOutDesktopScreenState extends State<WorkOutDesktopScreen> {
 
 class MyListTile extends StatefulWidget {
   final String title;
+  final String unit_1;
+  final String unit_2;
   final int reps;
-  final int sets;
+  final dynamic sets;
   const MyListTile(
-      {super.key, required this.title, required this.reps, required this.sets});
+      {super.key,
+      required this.title,
+      required this.reps,
+      required this.sets,
+      required this.unit_1,
+      required this.unit_2});
 
   @override
   State<MyListTile> createState() => _MyListTileState();
@@ -345,18 +358,16 @@ class _MyListTileState extends State<MyListTile> {
             children: [
               Column(
                 children: [
-                  const Text('Reps'),
+                  Text(widget.unit_1),
                   Text(widget.reps.toString()),
                 ],
               ),
-              // Text(widget.reps.toString()),
               const SizedBox(
                 width: 15,
               ),
-              // Text(widget.sets.toString())
               Column(
                 children: [
-                  const Text('Sets'),
+                  Text(widget.unit_2),
                   Text(widget.sets.toString()),
                 ],
               ),
