@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(8),
           child: PageView(
-            children: [
+            children: const [
               PieChartPage(),
             ],
           ),

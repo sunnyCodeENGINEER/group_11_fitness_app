@@ -82,9 +82,9 @@ class _SelectMealPlanMobileScreenState
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       MediumAppButton(level: 'Lose Weight'),
                       SizedBox(
                         width: 5,
@@ -205,9 +205,9 @@ class _SelectMealPlanDesktopScreenState
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       MediumAppButton(
                         level: 'Lose Weight',
                         width: 150,

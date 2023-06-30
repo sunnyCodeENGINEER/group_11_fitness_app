@@ -69,9 +69,9 @@ class _SelectWorkoutSplitMobileScreenState
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       MediumAppButton(level: 'Beginner'),
                       SizedBox(
                         width: 5,
@@ -192,9 +192,9 @@ class _SelectWorkoutSplitDesktopScreenState
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       MediumAppButton(
                         level: 'Beginner',
                         width: 150,

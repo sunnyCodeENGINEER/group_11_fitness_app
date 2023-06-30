@@ -64,8 +64,8 @@ class _GenderSelectMobileScreenState extends State<GenderSelectMobileScreen> {
                 // ),
               ],
             ),
-            Column(
-              children: const [
+            const Column(
+              children: [
                 GenderCard(
                   icon: Icons.male,
                   gender: 'Male',

@@ -5,6 +5,7 @@ import 'package:fitness_app/gender_select_screen.dart';
 import 'package:fitness_app/main%20app%20views/home_screen.dart';
 import 'package:fitness_app/login_screen.dart';
 import 'package:fitness_app/main%20app%20views/workout_screen.dart';
+import 'package:fitness_app/main%20app%20views/workout_timer_screen.dart';
 import 'package:fitness_app/onboarding_screen.dart';
 import 'package:fitness_app/pie%20chart/page/pie_chart_page.dart';
 import 'package:fitness_app/pie%20chart/pie_chart_screen.dart';
@@ -112,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),

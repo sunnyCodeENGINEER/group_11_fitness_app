@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 
 class PieData {
   static List<Data> data = [
-    Data(name: 'Blue', percent: 40, color: const Color(0xff0293ee)),
-    Data(name: 'Orange', percent: 30, color: const Color(0xfff8b250)),
-    Data(name: 'Black', percent: 15, color: Colors.black),
-    Data(name: 'Green', percent: 15, color: const Color(0xff13d38e)),
+    Data(
+        name: 'Protein',
+        percent: 40,
+        color: const Color.fromARGB(255, 199, 2, 238)),
+    Data(
+        name: 'Carbohydrates',
+        percent: 50,
+        color: const Color.fromARGB(255, 247, 154, 236)),
+    Data(
+        name: 'Fats',
+        percent: 20,
+        color: const Color.fromARGB(255, 121, 4, 92)),
+    //Data(name: 'Green', percent: 15, color: const Color(0xff13d38e)),
   ];
 }
 
