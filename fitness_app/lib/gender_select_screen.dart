@@ -1,3 +1,4 @@
+import 'package:fitness_app/age_select_view.dart';
 import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +80,7 @@ class _GenderSelectMobileScreenState extends State<GenderSelectMobileScreen> {
                 ),
               ],
             ),
-            const LargeAppButton(),
+            const LargeAppButton(screen: AgeSelectScreen(),),
           ],
         )),
       ),
@@ -136,7 +137,7 @@ class _GenderSelectDesktopScreenState extends State<GenderSelectDesktopScreen> {
               )
             ],
           ),
-          const LargeAppButton(),
+          const LargeAppButton(screen: AgeSelectScreen(),),
         ],
       )),
     );

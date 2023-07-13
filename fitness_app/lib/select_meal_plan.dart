@@ -1,4 +1,5 @@
 import 'package:fitness_app/create_account_screen.dart';
+import 'package:fitness_app/fill_profile_screen.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:fitness_app/select_workout_split.dart';
 import 'package:flutter/material.dart';
@@ -147,7 +148,7 @@ class _SelectMealPlanMobileScreenState
                   const SizedBox(
                     height: 5,
                   ),
-                  const LargeAppButton(),
+                  const LargeAppButton(screen: FillProfileScreen(),),
                 ],
               )
             ],
@@ -277,7 +278,7 @@ class _SelectMealPlanDesktopScreenState
                   const SizedBox(
                     height: 5,
                   ),
-                  const LargeAppButton(),
+                  const LargeAppButton(screen: FillProfileScreen(),),
                 ],
               )
             ],

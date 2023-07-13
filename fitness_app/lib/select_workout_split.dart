@@ -1,5 +1,6 @@
 import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/models/typo.dart';
+import 'package:fitness_app/select_meal_plan.dart';
 import 'package:flutter/material.dart';
 
 class SelectWorkoutSplitScreen extends StatefulWidget {
@@ -134,7 +135,7 @@ class _SelectWorkoutSplitMobileScreenState
                   const SizedBox(
                     height: 5,
                   ),
-                  const LargeAppButton(),
+                  const LargeAppButton(screen: SelectMealPlanScreen(),),
                 ],
               )
             ],
@@ -264,7 +265,7 @@ class _SelectWorkoutSplitDesktopScreenState
                   const SizedBox(
                     height: 5,
                   ),
-                  const LargeAppButton(),
+                  const LargeAppButton(screen: SelectMealPlanScreen(),),
                 ],
               )
             ],

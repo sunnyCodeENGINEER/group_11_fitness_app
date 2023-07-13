@@ -1,5 +1,7 @@
+import 'package:fitness_app/gender_select_screen.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
@@ -138,7 +140,7 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
           Center(
             child: Column(
               children: [
-                const LargeAppButton(),
+                const LargeAppButton(screen: GenderSelectScreen(),),
                 Padding(
                   padding: const EdgeInsets.only(
                     bottom: 20,
@@ -278,7 +280,7 @@ class _CreateAccountDesktopScreenState
                       const SizedBox(
                         height: 15,
                       ),
-                      const LargeAppButton(),
+                      const LargeAppButton(screen: GenderSelectScreen(),),
                       // const SizedBox(
                       //   height: 15,
                       // ),
@@ -304,7 +306,12 @@ class _CreateAccountDesktopScreenState
 }
 
 class LargeAppButton extends StatefulWidget {
-  const LargeAppButton({super.key});
+  final Widget screen;
+
+  const LargeAppButton({
+    super.key,
+    required this.screen,
+  });
 
   @override
   State<LargeAppButton> createState() => _LargeAppButtonState();
@@ -321,6 +328,10 @@ class _LargeAppButtonState extends State<LargeAppButton> {
     }
   }
 
+  void _navigate() {
+    Get.to(widget.screen);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -334,7 +345,7 @@ class _LargeAppButtonState extends State<LargeAppButton> {
               borderRadius: BorderRadius.circular(30),
             ),
             minimumSize: const Size(200, 60)),
-        onPressed: _incrementCounter,
+        onPressed: _navigate,
         child: Text("$a"),
       ),
     );

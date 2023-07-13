@@ -1,4 +1,5 @@
 import 'package:fitness_app/create_account_screen.dart';
+import 'package:fitness_app/login_screen.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
 
@@ -112,7 +113,7 @@ class _FillProfileMobileScreenState extends State<FillProfileMobileScreen> {
             ],
           ),
           const Center(
-            child: LargeAppButton(),
+            child: LargeAppButton(screen: LoginScreen(),),
           )
         ],
       ),
@@ -214,7 +215,7 @@ class _FillProfileDesktopScreenState extends State<FillProfileDesktopScreen> {
                       ),
                     ],
                   ),
-                  const LargeAppButton(),
+                  const LargeAppButton(screen: LoginScreen(),),
                 ],
               ),
             ),

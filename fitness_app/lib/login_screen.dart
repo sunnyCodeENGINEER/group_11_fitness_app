@@ -1,4 +1,5 @@
 import 'package:fitness_app/create_account_screen.dart';
+import 'package:fitness_app/main%20app%20views/home_screen.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
 
@@ -135,7 +136,7 @@ class _LoginMobileScreenState extends State<LoginMobileScreen> {
           Center(
             child: Column(
               children: [
-                const LargeAppButton(),
+                const LargeAppButton(screen: HomeScreen(),),
                 Padding(
                   padding: const EdgeInsets.only(
                     bottom: 20,
@@ -270,7 +271,7 @@ class _LoginDesktopScreenState extends State<LoginDesktopScreen> {
                       const SizedBox(
                         height: 15,
                       ),
-                      const LargeAppButton(),
+                      const LargeAppButton(screen: HomeScreen(),),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

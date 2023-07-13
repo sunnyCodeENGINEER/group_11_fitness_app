@@ -1,5 +1,6 @@
 import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/models/typo.dart';
+import 'package:fitness_app/select_workout_split.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
@@ -68,7 +69,7 @@ class _AgeSelectMobileScreenState extends State<AgeSelectMobileScreen> {
                 selectedTextStyle: pickerText,
                 haptics: true,
               ),
-              const LargeAppButton()
+              const LargeAppButton(screen: SelectWorkoutSplitScreen(),)
             ],
           ),
         ),
@@ -123,7 +124,7 @@ class _AgeSelectDesktopScreenState extends State<AgeSelectDesktopScreen> {
                 textStyle: headerTwo,
                 selectedTextStyle: pickerTextDesktop,
               ),
-              const LargeAppButton()
+              const LargeAppButton(screen: SelectWorkoutSplitScreen(),)
             ],
           ),
         ),

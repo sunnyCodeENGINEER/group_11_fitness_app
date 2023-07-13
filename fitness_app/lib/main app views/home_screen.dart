@@ -3,6 +3,25 @@ import 'package:fitness_app/models/typo.dart';
 import 'package:fitness_app/models/user_model.dart';
 import 'package:flutter/material.dart';
 
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: MediaQuery.of(context).size.width <=
+              MediaQuery.of(context).size.height
+          ? const HomeMobileScreen()
+          : const HomeMobileScreen(),
+    );
+  }
+}
+
 class HomeMobileScreen extends StatefulWidget {
   const HomeMobileScreen({super.key});
 
