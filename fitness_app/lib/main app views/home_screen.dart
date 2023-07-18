@@ -34,31 +34,40 @@ class _HomeMobileScreenState extends State<HomeMobileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.only(top: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  'Good Morning ',
-                  style: headerOne,
-                ),
-                Text(
-                  modelUser.lastname.toUpperCase(),
-                  style: largeTitleBlack,
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    'Good Morning ',
+                    style: headerOne,
+                  ),
+                  Text(
+                    modelUser.lastname.toUpperCase(),
+                    style: largeTitleBlack,
+                  ),
+                ],
+              ),
             ),
-            Text(
-              'Upcoming workouts',
-              style: subheadingBlack,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Text(
+                'Upcoming workouts',
+                style: subheadingBlack,
+              ),
             ),
             AppBanner(list: workoutBannerList),
-            Text(
-              'Upcoming meals',
-              style: subheadingBlack,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Text(
+                'Upcoming meals',
+                style: subheadingBlack,
+              ),
             ),
             AppBanner(list: mealBannerList)
           ],

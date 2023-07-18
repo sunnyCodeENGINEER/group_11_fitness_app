@@ -1,4 +1,5 @@
 import 'package:fitness_app/gender_select_screen.dart';
+import 'package:fitness_app/login_screen.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,6 +38,7 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
   void _signIn() {
     setState(() {
       signIn = !signIn;
+      Get.to(const LoginScreen());
     });
   }
 
@@ -140,7 +142,9 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
           Center(
             child: Column(
               children: [
-                const LargeAppButton(screen: GenderSelectScreen(),),
+                const LargeAppButton(
+                  screen: GenderSelectScreen(),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(
                     bottom: 20,
@@ -179,6 +183,7 @@ class _CreateAccountDesktopScreenState
   void _signIn() {
     setState(() {
       signIn = !signIn;
+      Get.to(const LoginScreen());
     });
   }
 
@@ -280,7 +285,9 @@ class _CreateAccountDesktopScreenState
                       const SizedBox(
                         height: 15,
                       ),
-                      const LargeAppButton(screen: GenderSelectScreen(),),
+                      const LargeAppButton(
+                        screen: GenderSelectScreen(),
+                      ),
                       // const SizedBox(
                       //   height: 15,
                       // ),
@@ -346,7 +353,7 @@ class _LargeAppButtonState extends State<LargeAppButton> {
             ),
             minimumSize: const Size(200, 60)),
         onPressed: _navigate,
-        child: Text("$a"),
+        child: const Text("NEXT"),
       ),
     );
   }
