@@ -9,13 +9,9 @@ Future<PostgreSQLConnection> getConnection() async {
     password: 'your_password',
   );
 
-  try {
-    await connection.open();
-    return connection;
-  } catch (e) {
-    print('Error connecting to the database: $e');
-    rethrow; // Rethrow the exception to be handled in the calling function.
-  }
+  await connection.open();
+
+  return connection;
 }
 
 Future<void> runDatabaseQuery() async {
@@ -24,11 +20,18 @@ Future<void> runDatabaseQuery() async {
   try {
     connection = await getConnection();
 
-    // Database queries and operations...
+    // Example query: Select data from a table
+    final results = await connection.query('SELECT * FROM "Exercise"');
+    for (var row in results) {
+      // Process each row
+      print(row);
+    }
+
+    // Add more queries as needed...
+
   } catch (e) {
     print('Error: $e');
   } finally {
-    // connection?.close();
     connection?.close();
   }
 }
