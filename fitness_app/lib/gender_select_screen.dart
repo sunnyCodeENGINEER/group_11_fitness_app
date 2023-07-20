@@ -1,5 +1,6 @@
 import 'package:fitness_app/age_select_view.dart';
 import 'package:fitness_app/create_account_screen.dart';
+import 'package:fitness_app/models/database_connection.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
 
@@ -80,7 +81,9 @@ class _GenderSelectMobileScreenState extends State<GenderSelectMobileScreen> {
                 ),
               ],
             ),
-            const LargeAppButton(screen: AgeSelectScreen(),),
+            const LargeAppButton(
+              screen: AgeSelectScreen(),
+            ),
           ],
         )),
       ),
@@ -137,7 +140,9 @@ class _GenderSelectDesktopScreenState extends State<GenderSelectDesktopScreen> {
               )
             ],
           ),
-          const LargeAppButton(screen: AgeSelectScreen(),),
+          const LargeAppButton(
+            screen: AgeSelectScreen(),
+          ),
         ],
       )),
     );
@@ -165,6 +170,7 @@ class _GenderCardState extends State<GenderCard> {
   void genderSelect() {
     setState(() {
       userGender = widget.gender;
+      runDatabaseQuery();
     });
   }
 
