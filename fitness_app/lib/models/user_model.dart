@@ -1,11 +1,11 @@
 class User {
   final int id;
-  final String lastname;
-  final String firstname;
+  String lastname;
+  String firstname;
   final String gender;
   final int age;
-  final String email;
-  final String phoneNumber;
+  String email;
+  String phoneNumber;
 
   User(this.id, this.lastname, this.firstname, this.gender, this.age,
       this.email, this.phoneNumber);
@@ -31,3 +31,21 @@ class Level {
     return [id, name, sets, repsPerSet];
   }
 }
+
+class UserDetails {
+  String username;
+  String password;
+  int levelID;
+  int splitID;
+  User user;
+
+  UserDetails(
+      {required this.username,
+      required this.password,
+      required this.levelID,
+      required this.splitID,
+      required this.user});
+}
+
+UserDetails userDetails = UserDetails(
+    username: "", password: "", levelID: 0, splitID: 0, user: modelUser);

@@ -1,6 +1,8 @@
 import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/main%20app%20views/home_screen.dart';
+import 'package:fitness_app/models/database_connection.dart';
 import 'package:fitness_app/models/typo.dart';
+import 'package:fitness_app/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -87,6 +89,9 @@ class _LoginMobileScreenState extends State<LoginMobileScreen> {
                           ),
                           labelText: 'Enter your Username.',
                         ),
+                        onChanged: (value) {
+                          userDetails.username = value;
+                        },
                       ),
                     ),
                     const SizedBox(
@@ -101,6 +106,9 @@ class _LoginMobileScreenState extends State<LoginMobileScreen> {
                           ),
                           labelText: 'Enter your password.',
                         ),
+                        onChanged: (value) {
+                          userDetails.password = value;
+                        },
                       ),
                     ),
                     const SizedBox(
@@ -230,6 +238,9 @@ class _LoginDesktopScreenState extends State<LoginDesktopScreen> {
                             ),
                             labelText: 'Enter your Username.',
                           ),
+                          onChanged: (value) {
+                            userDetails.username = value;
+                          },
                         ),
                       ),
                       const SizedBox(
@@ -244,6 +255,9 @@ class _LoginDesktopScreenState extends State<LoginDesktopScreen> {
                             ),
                             labelText: 'Enter your password.',
                           ),
+                          onChanged: (value) {
+                            userDetails.password = value;
+                          },
                         ),
                       ),
                       const SizedBox(
@@ -298,4 +312,15 @@ class _LoginDesktopScreenState extends State<LoginDesktopScreen> {
       ),
     ));
   }
+}
+
+Future<void> _validate(String username, String password) async {
+  int userID = await validateLogin(username, password) ?? 0;
+
+  modelUser = await getUserData(userID) ??
+      User(1, 'Doe', 'John', 'Male', 28, 'jogndoe@you.us', '0200000000');
+}
+
+void login() {
+  _validate(userDetails.username, userDetails.password);
 }

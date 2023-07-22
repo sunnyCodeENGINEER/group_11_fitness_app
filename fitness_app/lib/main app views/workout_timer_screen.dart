@@ -18,16 +18,16 @@ class _WorkoutTimerMobileScreenState extends State<WorkoutTimerMobileScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(modelSplit.workout.exercise.name),
+          Text("modelSplit.workout.exercise.name"),
           Row(
             children: [
               Text(
-                "${modelSplit.workout.exercise.reps} reps",
+                "modelSplit.workout.exercise.reps reps",
               ),
               const SizedBox(
                 width: 20,
               ),
-              Text("${modelSplit.workout.exercise.sets} sets")
+              Text("modelSplit.workout.exercise.sets sets")
             ],
           ),
           Container(

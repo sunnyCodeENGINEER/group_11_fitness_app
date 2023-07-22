@@ -1,7 +1,10 @@
 import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/login_screen.dart';
+import 'package:fitness_app/models/database_connection.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
+
+import 'models/user_model.dart';
 
 class FillProfileScreen extends StatefulWidget {
   const FillProfileScreen({super.key});
@@ -77,6 +80,9 @@ class _FillProfileMobileScreenState extends State<FillProfileMobileScreen> {
                           ),
                           labelText: 'Enter your firstname.',
                         ),
+                        onChanged: (value) {
+                          modelUser.firstname = value;
+                        },
                       ),
                     ),
                     const SizedBox(
@@ -91,6 +97,9 @@ class _FillProfileMobileScreenState extends State<FillProfileMobileScreen> {
                           ),
                           labelText: 'Enter your lastname.',
                         ),
+                        onChanged: (value) {
+                          modelUser.lastname = value;
+                        },
                       ),
                     ),
                     const SizedBox(
@@ -105,6 +114,9 @@ class _FillProfileMobileScreenState extends State<FillProfileMobileScreen> {
                           ),
                           labelText: 'Enter your Email.',
                         ),
+                        onChanged: (value) {
+                          modelUser.email = value;
+                        },
                       ),
                     ),
                   ],
@@ -113,7 +125,10 @@ class _FillProfileMobileScreenState extends State<FillProfileMobileScreen> {
             ],
           ),
           const Center(
-            child: LargeAppButton(screen: LoginScreen(),),
+            child: LargeAppButton(
+              screen: LoginScreen(),
+              myfunction: createAccount,
+            ),
           )
         ],
       ),
@@ -178,8 +193,11 @@ class _FillProfileDesktopScreenState extends State<FillProfileDesktopScreen> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            labelText: 'Enter your Username.',
+                            labelText: 'Enter your firstname.',
                           ),
+                          onChanged: (value) {
+                            modelUser.firstname = value;
+                          },
                         ),
                       ),
                       const SizedBox(
@@ -194,6 +212,9 @@ class _FillProfileDesktopScreenState extends State<FillProfileDesktopScreen> {
                             ),
                             labelText: 'Enter your lastname.',
                           ),
+                          onChanged: (value) {
+                            modelUser.lastname = value;
+                          },
                         ),
                       ),
                       const SizedBox(
@@ -208,6 +229,10 @@ class _FillProfileDesktopScreenState extends State<FillProfileDesktopScreen> {
                             ),
                             labelText: 'Enter your Email.',
                           ),
+                          onChanged: (value) {
+                            modelUser.email = value;
+                            
+                          },
                         ),
                       ),
                       const SizedBox(
@@ -215,7 +240,10 @@ class _FillProfileDesktopScreenState extends State<FillProfileDesktopScreen> {
                       ),
                     ],
                   ),
-                  const LargeAppButton(screen: LoginScreen(),),
+                  const LargeAppButton(
+                    screen: LoginScreen(),
+                    myfunction: createAccount,
+                  ),
                 ],
               ),
             ),
@@ -224,4 +252,14 @@ class _FillProfileDesktopScreenState extends State<FillProfileDesktopScreen> {
       ),
     ));
   }
+}
+
+void addAccount(
+    String username, String password, int levelID, int splitID, User user) {
+  addUser(username, password, levelID, splitID, user);
+}
+
+void createAccount() {
+  addAccount(userDetails.username, userDetails.password, userDetails.levelID,
+      userDetails.splitID, userDetails.user);
 }

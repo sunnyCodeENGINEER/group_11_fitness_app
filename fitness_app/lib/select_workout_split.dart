@@ -37,9 +37,9 @@ class _SelectWorkoutSplitMobileScreenState
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = const [
-      DropdownMenuItem(value: "Push Pull Legs", child: Text("Push Pull Legs")),
+      DropdownMenuItem(value: "2", child: Text("Push Pull Legs")),
       DropdownMenuItem(
-          value: "Upper Lower Split", child: Text("Upper Lower Split")),
+          value: "1", child: Text("Upper Lower Split")),
       DropdownMenuItem(value: "Full Body", child: Text("Full Body")),
       DropdownMenuItem(value: "Custom", child: Text("Custom")),
     ];
@@ -160,9 +160,9 @@ class _SelectWorkoutSplitDesktopScreenState
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = const [
-      DropdownMenuItem(value: "Push Pull Legs", child: Text("Push Pull Legs")),
+      DropdownMenuItem(value: "2", child: Text("Push Pull Legs")),
       DropdownMenuItem(
-          value: "Upper Lower Split", child: Text("Upper Lower Split")),
+          value: "1", child: Text("Upper Lower Split")),
       DropdownMenuItem(value: "Full Body", child: Text("Full Body")),
       DropdownMenuItem(value: "Custom", child: Text("Custom")),
     ];

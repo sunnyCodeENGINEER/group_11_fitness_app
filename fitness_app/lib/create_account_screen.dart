@@ -1,6 +1,8 @@
 import 'package:fitness_app/gender_select_screen.dart';
 import 'package:fitness_app/login_screen.dart';
+import 'package:fitness_app/models/database_connection.dart';
 import 'package:fitness_app/models/typo.dart';
+import 'package:fitness_app/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,6 +36,9 @@ class CreateAccountMobileScreen extends StatefulWidget {
 class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
   bool rememberMe = false;
   bool signIn = false;
+  String _username = "";
+  String _password = "";
+  String _confirmPassword = "";
 
   void _signIn() {
     setState(() {
@@ -88,6 +93,12 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
                           ),
                           labelText: 'Enter your Username.',
                         ),
+                        onChanged: (value) {
+                          setState(() {
+                            userDetails.username = value;
+                          });
+                        },
+                        validator: _validateInput,
                       ),
                     ),
                     const SizedBox(
@@ -102,6 +113,12 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
                           ),
                           labelText: 'Enter your password.',
                         ),
+                        onChanged: (value) {
+                          setState(() {
+                            userDetails.password = value;
+                          });
+                        },
+                        validator: _validateInput,
                       ),
                     ),
                     const SizedBox(
@@ -116,6 +133,12 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
                           ),
                           labelText: 'Confirm your password.',
                         ),
+                        onChanged: (value) {
+                          setState(() {
+                            _confirmPassword = value;
+                          });
+                        },
+                        validator: _validateInput,
                       ),
                     ),
                     const SizedBox(
@@ -179,6 +202,9 @@ class _CreateAccountDesktopScreenState
     extends State<CreateAccountDesktopScreen> {
   bool rememberMe = false;
   bool signIn = false;
+  String _username = "";
+  String _password = "";
+  String _confirmPassword = "";
 
   void _signIn() {
     setState(() {
@@ -236,6 +262,12 @@ class _CreateAccountDesktopScreenState
                             ),
                             labelText: 'Enter your Username.',
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              userDetails.username = value;
+                            });
+                          },
+                          validator: _validateInput,
                         ),
                       ),
                       const SizedBox(
@@ -250,6 +282,12 @@ class _CreateAccountDesktopScreenState
                             ),
                             labelText: 'Enter your password.',
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              userDetails.password = value;
+                            });
+                          },
+                          validator: _validateInput,
                         ),
                       ),
                       const SizedBox(
@@ -264,6 +302,12 @@ class _CreateAccountDesktopScreenState
                             ),
                             labelText: 'Confirm your password.',
                           ),
+                          onChanged: (value) {
+                            setState(() {
+                              _confirmPassword = value;
+                            });
+                          },
+                          validator: _validateInput,
                         ),
                       ),
                       const SizedBox(
@@ -314,11 +358,10 @@ class _CreateAccountDesktopScreenState
 
 class LargeAppButton extends StatefulWidget {
   final Widget screen;
+  final VoidCallback? myfunction;
 
-  const LargeAppButton({
-    super.key,
-    required this.screen,
-  });
+  const LargeAppButton(
+      {super.key, required this.screen, this.myfunction});
 
   @override
   State<LargeAppButton> createState() => _LargeAppButtonState();
@@ -336,6 +379,7 @@ class _LargeAppButtonState extends State<LargeAppButton> {
   }
 
   void _navigate() {
+    widget.myfunction;
     Get.to(widget.screen);
   }
 
@@ -357,4 +401,11 @@ class _LargeAppButtonState extends State<LargeAppButton> {
       ),
     );
   }
+}
+
+String? _validateInput(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Please enter your username.';
+  }
+  return null;
 }
