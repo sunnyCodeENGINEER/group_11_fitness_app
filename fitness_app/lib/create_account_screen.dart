@@ -36,8 +36,6 @@ class CreateAccountMobileScreen extends StatefulWidget {
 class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
   bool rememberMe = false;
   bool signIn = false;
-  String _username = "";
-  String _password = "";
   String _confirmPassword = "";
 
   void _signIn() {
@@ -165,7 +163,7 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
           Center(
             child: Column(
               children: [
-                const LargeAppButton(
+                const LargeAppButtonCreate(
                   screen: GenderSelectScreen(),
                 ),
                 Padding(
@@ -202,8 +200,6 @@ class _CreateAccountDesktopScreenState
     extends State<CreateAccountDesktopScreen> {
   bool rememberMe = false;
   bool signIn = false;
-  String _username = "";
-  String _password = "";
   String _confirmPassword = "";
 
   void _signIn() {
@@ -329,7 +325,7 @@ class _CreateAccountDesktopScreenState
                       const SizedBox(
                         height: 15,
                       ),
-                      const LargeAppButton(
+                      const LargeAppButtonCreate(
                         screen: GenderSelectScreen(),
                       ),
                       // const SizedBox(
@@ -360,8 +356,7 @@ class LargeAppButton extends StatefulWidget {
   final Widget screen;
   final VoidCallback? myfunction;
 
-  const LargeAppButton(
-      {super.key, required this.screen, this.myfunction});
+  const LargeAppButton({super.key, required this.screen, this.myfunction});
 
   @override
   State<LargeAppButton> createState() => _LargeAppButtonState();
@@ -380,6 +375,7 @@ class _LargeAppButtonState extends State<LargeAppButton> {
 
   void _navigate() {
     widget.myfunction;
+    print(userDetails.password);
     Get.to(widget.screen);
   }
 
@@ -408,4 +404,43 @@ String? _validateInput(String? value) {
     return 'Please enter your username.';
   }
   return null;
+}
+
+class LargeAppButtonCreate extends StatefulWidget {
+  final Widget screen;
+
+  const LargeAppButtonCreate({super.key, required this.screen});
+
+  @override
+  State<LargeAppButtonCreate> createState() => _LargeAppButtonCreateState();
+}
+
+class _LargeAppButtonCreateState extends State<LargeAppButtonCreate> {
+  void _navigate() {
+    
+    bool newUser = checkIfUserExists(userDetails.username) as bool;
+    if (newUser) {
+      Get.to(widget.screen);
+    }
+    
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(
+        bottom: 50,
+      ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.purple,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            minimumSize: const Size(200, 60)),
+        onPressed: _navigate,
+        child: const Text("NEXT"),
+      ),
+    );
+  }
 }

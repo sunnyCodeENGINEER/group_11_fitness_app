@@ -3,6 +3,7 @@ import 'package:fitness_app/main%20app%20views/home_screen.dart';
 import 'package:fitness_app/models/database_connection.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:fitness_app/models/user_model.dart';
+import 'package:fitness_app/models/workout_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -146,7 +147,7 @@ class _LoginMobileScreenState extends State<LoginMobileScreen> {
           Center(
             child: Column(
               children: [
-                const LargeAppButton(
+                const LargeAppButtonLogin(
                   screen: HomeScreen(),
                 ),
                 Padding(
@@ -290,7 +291,7 @@ class _LoginDesktopScreenState extends State<LoginDesktopScreen> {
                       const SizedBox(
                         height: 15,
                       ),
-                      const LargeAppButton(
+                      const LargeAppButtonLogin(
                         screen: HomeScreen(),
                       ),
                       Row(
@@ -323,4 +324,68 @@ Future<void> _validate(String username, String password) async {
 
 void login() {
   _validate(userDetails.username, userDetails.password);
+}
+
+class LargeAppButtonLogin extends StatefulWidget {
+  final Widget screen;
+
+  const LargeAppButtonLogin({super.key, required this.screen});
+
+  @override
+  State<LargeAppButtonLogin> createState() => _LargeAppButtonLoginState();
+}
+
+class _LargeAppButtonLoginState extends State<LargeAppButtonLogin> {
+  Future<void> _navigate() async {
+    int? userID =
+        await validateLogin(userDetails.username, userDetails.password);
+    if (userID != null) {
+      modelUser = await getUserData(userID) ?? modelUser;
+      userDetails.splitID = await getSplitID(userID) ?? 0;
+      modelSplit = await getSplit(userDetails.splitID) ?? modelSplit;
+      weeklyWorkouts = [];
+      weeklyWorkouts.add(await getWorkout(modelSplit.monday) ?? modelWorkout);
+      weeklyWorkouts.add(await getWorkout(modelSplit.tuesday) ?? modelWorkout);
+      weeklyWorkouts
+          .add(await getWorkout(modelSplit.wednesday) ?? modelWorkout);
+      weeklyWorkouts.add(await getWorkout(modelSplit.thursday) ?? modelWorkout);
+      weeklyWorkouts.add(await getWorkout(modelSplit.friday) ?? modelWorkout);
+      weeklyWorkouts.add(await getWorkout(modelSplit.saturday) ?? modelWorkout);
+      weeklyWorkouts.add(await getWorkout(modelSplit.sunday) ?? modelWorkout);
+      Get.to(widget.screen);
+    }
+    print(userID);
+    print(userDetails.password);
+    print(userDetails.splitID);
+    print(modelSplit.name);
+    for (var i in weeklyWorkouts) {
+      print(i.name + "\n");
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(
+        bottom: 50,
+      ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.purple,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            minimumSize: const Size(200, 60)),
+        onPressed: _navigate,
+        child: const Text("NEXT"),
+      ),
+    );
+  }
+}
+
+String? _validateInput(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Please enter your username.';
+  }
+  return null;
 }

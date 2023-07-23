@@ -1,7 +1,10 @@
+import 'package:fitness_app/main%20app%20views/workout_timer_screen.dart';
 import 'package:fitness_app/models/app_colors.dart';
 import 'package:fitness_app/models/typo.dart';
+import 'package:fitness_app/models/user_model.dart';
 import 'package:fitness_app/models/workout_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WorkOutScreen extends StatefulWidget {
   const WorkOutScreen({super.key});
@@ -56,7 +59,7 @@ class _WorkOutMobileScreenState extends State<WorkOutMobileScreen> {
                           child: Container(color: Colors.black),
                         ),
                         Text(
-                          modelSplit.workout.name,
+                          modelWorkout.name,
                           style: largeTitle,
                         ),
                         Container(
@@ -76,14 +79,13 @@ class _WorkOutMobileScreenState extends State<WorkOutMobileScreen> {
                                   blurRadius: 10,
                                 )
                               ]),
-                          child: Row(
+                          child: const Row(
                             children: [
-                              const Icon(Icons.timelapse_outlined),
-                              const SizedBox(
+                              Icon(Icons.timelapse_outlined),
+                              SizedBox(
                                 width: 5,
                               ),
-                              Text(
-                                  '${modelSplit.workout.estimatedDuration} mins')
+                              Text('60 mins')
                             ],
                           ),
                         ),
@@ -142,14 +144,15 @@ class _WorkOutMobileScreenState extends State<WorkOutMobileScreen> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: 5,
+                      itemCount: exercisesInWorkout.length,
                       itemBuilder: (context, index) {
                         return MyListTile(
-                          title: modelSplit.workout.exercise.name,
-                          reps: modelSplit.workout.exercise.reps,
-                          sets: modelSplit.workout.exercise.sets.toDouble(),
+                          title: exercisesInWorkout[index].title,
+                          reps: modelLevel.repsPerSet,
+                          sets: int.parse(modelLevel.sets),
                           unit_1: 'Sets',
                           unit_2: 'Reps',
+                          exercise: exercisesInWorkout[index],
                         );
                       },
                     ),
@@ -229,7 +232,7 @@ class _WorkOutDesktopScreenState extends State<WorkOutDesktopScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              modelSplit.workout.name,
+                              modelWorkout.name,
                               style: largeTitleDesktop,
                             ),
                             Container(
@@ -249,14 +252,13 @@ class _WorkOutDesktopScreenState extends State<WorkOutDesktopScreen> {
                                       blurRadius: 10,
                                     )
                                   ]),
-                              child: Row(
+                              child: const Row(
                                 children: [
-                                  const Icon(Icons.timelapse_outlined),
-                                  const SizedBox(
+                                  Icon(Icons.timelapse_outlined),
+                                  SizedBox(
                                     width: 5,
                                   ),
-                                  Text(
-                                      '${modelSplit.workout.estimatedDuration} mins')
+                                  Text('60 mins')
                                 ],
                               ),
                             ),
@@ -293,14 +295,15 @@ class _WorkOutDesktopScreenState extends State<WorkOutDesktopScreen> {
                   ]),
               child: Expanded(
                 child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: exercisesInWorkout.length,
                   itemBuilder: (context, index) {
                     return MyListTile(
-                      title: modelSplit.workout.exercise.name,
-                      reps: modelSplit.workout.exercise.reps,
-                      sets: modelSplit.workout.exercise.sets.toDouble(),
+                      title: exercisesInWorkout[index].title,
+                      reps: modelLevel.repsPerSet,
+                      sets: int.parse(modelLevel.sets),
                       unit_1: 'Sets',
                       unit_2: 'Reps',
+                      exercise: exercisesInWorkout[index],
                     );
                   },
                 ),
@@ -317,15 +320,17 @@ class MyListTile extends StatefulWidget {
   final String title;
   final String unit_1;
   final String unit_2;
-  final int reps;
+  final String reps;
   final dynamic sets;
+  final Exercise exercise;
   const MyListTile(
       {super.key,
       required this.title,
       required this.reps,
       required this.sets,
       required this.unit_1,
-      required this.unit_2});
+      required this.unit_2,
+      required this.exercise});
 
   @override
   State<MyListTile> createState() => _MyListTileState();
@@ -334,46 +339,51 @@ class MyListTile extends StatefulWidget {
 class _MyListTileState extends State<MyListTile> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      decoration: BoxDecoration(
-          color: tintPrimaryAppColor,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: shadowColor.withOpacity(0.7),
-              offset: const Offset(5, 2),
-              blurRadius: 10,
+    return InkWell(
+      onTap: () {
+        Get.to(WorkOutTimerScreen(exercise: widget.exercise));
+      },
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        decoration: BoxDecoration(
+            color: tintPrimaryAppColor,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: shadowColor.withOpacity(0.7),
+                offset: const Offset(5, 2),
+                blurRadius: 10,
+              ),
+            ]),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              widget.title,
+              style: headerOnePrimaryColor,
             ),
-          ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            widget.title,
-            style: headerOnePrimaryColor,
-          ),
-          Row(
-            children: [
-              Column(
-                children: [
-                  Text(widget.unit_1),
-                  Text(widget.reps.toString()),
-                ],
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              Column(
-                children: [
-                  Text(widget.unit_2),
-                  Text(widget.sets.toString()),
-                ],
-              ),
-            ],
-          )
-        ],
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Text(widget.unit_1),
+                    Text(widget.reps.toString()),
+                  ],
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Column(
+                  children: [
+                    Text(widget.unit_2),
+                    Text(widget.sets.toString()),
+                  ],
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

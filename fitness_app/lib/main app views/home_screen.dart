@@ -1,7 +1,11 @@
+import 'package:fitness_app/main%20app%20views/workout_screen.dart';
 import 'package:fitness_app/models/app_banner_model.dart';
+import 'package:fitness_app/models/database_connection.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:fitness_app/models/user_model.dart';
+import 'package:fitness_app/models/workout_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -61,7 +65,7 @@ class _HomeMobileScreenState extends State<HomeMobileScreen> {
                 style: subheadingBlack,
               ),
             ),
-            AppBanner(list: workoutBannerList),
+            AppBanner(list: weeklyWorkouts),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Text(
@@ -116,27 +120,37 @@ class _AppBannerState extends State<AppBanner> {
                       scale: value,
                       child: child,
                     )),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.purple,
-                      borderRadius: BorderRadius.circular(30)),
-                  margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: DefaultTextStyle(
-                    style: headerOne,
-                    child: Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            children: [
-                              Text(widget.list[index].name.toUpperCase())
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                child: InkWell(
+                    onTap: () async {
+                      exercisesInWorkout =
+                          await getExercisesInWorkout(widget.list[index].id);
+                      for (var i in exercisesInWorkout) {
+                        print(i.title);
+                        modelWorkout = widget.list[index];
+                      }
+                      Get.to(const WorkOutScreen());
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.purple,
+                          borderRadius: BorderRadius.circular(30)),
+                      margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: DefaultTextStyle(
+                        style: headerOne,
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  Text(widget.list[index].name.toUpperCase())
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )),
               );
             },
           ),

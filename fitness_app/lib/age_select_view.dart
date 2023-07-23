@@ -1,5 +1,6 @@
 import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/models/typo.dart';
+import 'package:fitness_app/models/user_model.dart';
 import 'package:fitness_app/select_workout_split.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -58,7 +59,7 @@ class _AgeSelectMobileScreenState extends State<AgeSelectMobileScreen> {
                 axis: Axis.horizontal,
                 minValue: 1,
                 maxValue: 100,
-                value: age,
+                value: modelUser.age,
                 onChanged: ((value) {
                   setState(() {
                     age = value;
@@ -114,7 +115,7 @@ class _AgeSelectDesktopScreenState extends State<AgeSelectDesktopScreen> {
                 itemCount: 7,
                 minValue: 1,
                 maxValue: 100,
-                value: age,
+                value: modelUser.age,
                 onChanged: ((value) {
                   setState(() {
                     age = value;

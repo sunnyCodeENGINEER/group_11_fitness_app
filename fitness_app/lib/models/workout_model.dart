@@ -22,7 +22,17 @@ class Split {
   });
 
   List<dynamic> toList() {
-    return [id, name, monday, tuesday, wednesday, thursday, friday, saturday, sunday];
+    return [
+      id,
+      name,
+      monday,
+      tuesday,
+      wednesday,
+      thursday,
+      friday,
+      saturday,
+      sunday
+    ];
   }
 }
 
@@ -60,14 +70,29 @@ class Exercise {
   }
 }
 
-// model split
-// Split modelSplit = Split(
-//   1,
-//   'Push Pull Legs',
-//   Workout(
-//     1,
-//     'Chest',
-//     60,
-//     Exercise(1, 'Bench press', 12, 4, 60, 30),
-//   ),
-// );
+Split modelSplit = Split(
+  id: 0,
+  name: "name",
+  monday: 0,
+  tuesday: 0,
+  wednesday: 0,
+  thursday: 0,
+  friday: 0,
+  saturday: 0,
+  sunday: 0,
+);
+
+Workout modelWorkout = Workout(0, "name");
+
+Exercise modelExercise = Exercise(
+  id: 0,
+  title: "title",
+  description: "description",
+  bodyPart: "bodyPart",
+  equipment: "equipment",
+  rating: 0.0,
+);
+
+List<Exercise> exercisesInWorkout = [];
+
+List<Workout> weeklyWorkouts = [];

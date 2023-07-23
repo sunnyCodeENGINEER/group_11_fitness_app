@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/models/typo.dart';
+import 'package:fitness_app/models/user_model.dart';
 import 'package:fitness_app/select_meal_plan.dart';
 import 'package:flutter/material.dart';
 
@@ -33,15 +36,14 @@ class SelectWorkoutSplitMobileScreen extends StatefulWidget {
 
 class _SelectWorkoutSplitMobileScreenState
     extends State<SelectWorkoutSplitMobileScreen> {
-  String selectedValue = 'Push Pull Legs';
+  String selectedValue = '2';
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = const [
       DropdownMenuItem(value: "2", child: Text("Push Pull Legs")),
-      DropdownMenuItem(
-          value: "1", child: Text("Upper Lower Split")),
-      DropdownMenuItem(value: "Full Body", child: Text("Full Body")),
-      DropdownMenuItem(value: "Custom", child: Text("Custom")),
+      DropdownMenuItem(value: "1", child: Text("Upper Lower Split")),
+      DropdownMenuItem(value: "3", child: Text("Full Body")),
+      DropdownMenuItem(value: "0", child: Text("Custom")),
     ];
     return menuItems;
   }
@@ -77,7 +79,10 @@ class _SelectWorkoutSplitMobileScreenState
                       SizedBox(
                         width: 5,
                       ),
-                      MediumAppButton(level: 'Intermediate'),
+                      MediumAppButton(
+                        level: 'Intermediate',
+                        width: 120,
+                      ),
                       SizedBox(
                         width: 5,
                       ),
@@ -116,6 +121,7 @@ class _SelectWorkoutSplitMobileScreenState
                         onChanged: (String? newValue) {
                           setState(() {
                             selectedValue = newValue!;
+                            userDetails.splitID = int.parse(selectedValue);
                           });
                         },
                         items: dropdownItems),
@@ -125,7 +131,7 @@ class _SelectWorkoutSplitMobileScreenState
               Column(
                 children: [
                   Text(
-                    selectedValue == 'Custom'
+                    selectedValue == '0'
                         ? 'Custom Workouts can be set up later.'
                         : '',
                     style: const TextStyle(
@@ -135,7 +141,9 @@ class _SelectWorkoutSplitMobileScreenState
                   const SizedBox(
                     height: 5,
                   ),
-                  const LargeAppButton(screen: SelectMealPlanScreen(),),
+                  const LargeAppButton(
+                    screen: SelectMealPlanScreen(),
+                  ),
                 ],
               )
             ],
@@ -156,15 +164,14 @@ class SelectWorkoutSplitDesktopScreen extends StatefulWidget {
 
 class _SelectWorkoutSplitDesktopScreenState
     extends State<SelectWorkoutSplitDesktopScreen> {
-  String selectedValue = 'Push Pull Legs';
+  String selectedValue = '2';
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = const [
       DropdownMenuItem(value: "2", child: Text("Push Pull Legs")),
-      DropdownMenuItem(
-          value: "1", child: Text("Upper Lower Split")),
-      DropdownMenuItem(value: "Full Body", child: Text("Full Body")),
-      DropdownMenuItem(value: "Custom", child: Text("Custom")),
+      DropdownMenuItem(value: "1", child: Text("Upper Lower Split")),
+      DropdownMenuItem(value: "3", child: Text("Full Body")),
+      DropdownMenuItem(value: "0", child: Text("Custom")),
     ];
     return menuItems;
   }
@@ -246,6 +253,7 @@ class _SelectWorkoutSplitDesktopScreenState
                         onChanged: (String? newValue) {
                           setState(() {
                             selectedValue = newValue!;
+                            userDetails.splitID = int.parse(selectedValue);
                           });
                         },
                         items: dropdownItems),
@@ -255,7 +263,7 @@ class _SelectWorkoutSplitDesktopScreenState
               Column(
                 children: [
                   Text(
-                    selectedValue == 'Custom'
+                    selectedValue == '0'
                         ? 'Custom Workouts can be set up later.'
                         : '',
                     style: const TextStyle(
@@ -265,7 +273,9 @@ class _SelectWorkoutSplitDesktopScreenState
                   const SizedBox(
                     height: 5,
                   ),
-                  const LargeAppButton(screen: SelectMealPlanScreen(),),
+                  const LargeAppButton(
+                    screen: SelectMealPlanScreen(),
+                  ),
                 ],
               )
             ],
@@ -292,14 +302,21 @@ class MediumAppButton extends StatefulWidget {
 }
 
 class _MediumAppButtonState extends State<MediumAppButton> {
-  int a = 0;
-
-  void _incrementCounter() {
-    if (a < 1) {
-      setState(() {
-        a++;
-      });
-    }
+  void _setLevel() {
+    setState(() {
+      switch (widget.level) {
+        case "Beginner":
+          userDetails.levelID = 2;
+          break;
+        case "Intermediate":
+          userDetails.levelID = 3;
+          break;
+        case "Advanced":
+          userDetails.levelID = 4;
+          break;
+        default:
+      }
+    });
   }
 
   @override
@@ -308,19 +325,46 @@ class _MediumAppButtonState extends State<MediumAppButton> {
       padding: const EdgeInsets.only(
         bottom: 50,
       ),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
+      child: SizedBox(
+        width: widget.width,
+        height: widget.height,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
             backgroundColor: Colors.purple,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            minimumSize: Size(widget.width, widget.height)),
-        onPressed: _incrementCounter,
-        child: Text(
-          widget.level,
-          style: mediumButtonText,
+          ),
+          onPressed: _setLevel,
+          child: Text(
+            widget.level,
+            style: mediumButtonText,
+          ),
         ),
       ),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Container(
+  //     padding: const EdgeInsets.only(
+  //       bottom: 50,
+  //     ),
+  //     child: ElevatedButton(
+  //       style: ElevatedButton.styleFrom(
+  //         backgroundColor: Colors.purple,
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(30),
+  //         ),
+  //         // minimumSize: Size(widget.width, widget.height),
+  //       ),
+  //       onPressed: _setLevel,
+  //       child: Text(
+  //         widget.level,
+  //         style: mediumButtonText,
+  //       ),
+  //     ),
+  //   );
+  // }
 }

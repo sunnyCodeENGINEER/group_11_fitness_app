@@ -3,6 +3,7 @@ import 'package:fitness_app/login_screen.dart';
 import 'package:fitness_app/models/database_connection.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'models/user_model.dart';
 
@@ -125,7 +126,7 @@ class _FillProfileMobileScreenState extends State<FillProfileMobileScreen> {
             ],
           ),
           const Center(
-            child: LargeAppButton(
+            child: LargeAppButtonCreate(
               screen: LoginScreen(),
               myfunction: createAccount,
             ),
@@ -231,7 +232,6 @@ class _FillProfileDesktopScreenState extends State<FillProfileDesktopScreen> {
                           ),
                           onChanged: (value) {
                             modelUser.email = value;
-                            
                           },
                         ),
                       ),
@@ -240,7 +240,7 @@ class _FillProfileDesktopScreenState extends State<FillProfileDesktopScreen> {
                       ),
                     ],
                   ),
-                  const LargeAppButton(
+                  const LargeAppButtonCreate(
                     screen: LoginScreen(),
                     myfunction: createAccount,
                   ),
@@ -256,10 +256,69 @@ class _FillProfileDesktopScreenState extends State<FillProfileDesktopScreen> {
 
 void addAccount(
     String username, String password, int levelID, int splitID, User user) {
-  addUser(username, password, levelID, splitID, user);
+  addUser(username, password, levelID, splitID, user.toList());
 }
 
 void createAccount() {
   addAccount(userDetails.username, userDetails.password, userDetails.levelID,
       userDetails.splitID, userDetails.user);
+  print("Successful");
+}
+
+class LargeAppButtonCreate extends StatefulWidget {
+  final Widget screen;
+  final VoidCallback? myfunction;
+
+  const LargeAppButtonCreate(
+      {super.key, required this.screen, this.myfunction});
+
+  @override
+  State<LargeAppButtonCreate> createState() => _LargeAppButtonCreateState();
+}
+
+class _LargeAppButtonCreateState extends State<LargeAppButtonCreate> {
+  int a = 0;
+
+  void _navigate() {
+    addUser(userDetails.username, userDetails.password, userDetails.levelID,
+        userDetails.splitID, userDetails.user.toList());
+    // runDatabaseQuery();
+    //  createAccount();
+    print(modelUser.email);
+    print(modelUser.firstname);
+    print(modelUser.lastname);
+    print(modelUser.phoneNumber);
+    print(modelUser.gender);
+    print(userDetails.username);
+    print(userDetails.password);
+    print(userDetails.user.toList());
+    print("successful");
+    // Get.to(widget.screen);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(
+        bottom: 50,
+      ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.purple,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            minimumSize: const Size(200, 60)),
+        onPressed: _navigate,
+        child: const Text("NEXT!"),
+      ),
+    );
+  }
+}
+
+String? _validateInput(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Please enter your username.';
+  }
+  return null;
 }

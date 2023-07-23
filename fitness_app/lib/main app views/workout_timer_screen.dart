@@ -1,9 +1,35 @@
 import 'package:fitness_app/models/app_colors.dart';
+import 'package:fitness_app/models/user_model.dart';
 import 'package:fitness_app/models/workout_model.dart';
 import 'package:flutter/material.dart';
 
+class WorkOutTimerScreen extends StatefulWidget {
+  final Exercise exercise;
+  const WorkOutTimerScreen({super.key, required this.exercise});
+
+  @override
+  State<WorkOutTimerScreen> createState() => _WorkOutTimerScreenState();
+}
+
+class _WorkOutTimerScreenState extends State<WorkOutTimerScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: MediaQuery.of(context).size.width <=
+              MediaQuery.of(context).size.height
+          ? WorkoutTimerMobileScreen(
+              exercise: widget.exercise,
+            )
+          : WorkoutTimerMobileScreen(
+              exercise: widget.exercise,
+            ),
+    );
+  }
+}
+
 class WorkoutTimerMobileScreen extends StatefulWidget {
-  const WorkoutTimerMobileScreen({super.key});
+  final Exercise exercise;
+  const WorkoutTimerMobileScreen({super.key, required this.exercise});
 
   @override
   State<WorkoutTimerMobileScreen> createState() =>
@@ -18,16 +44,16 @@ class _WorkoutTimerMobileScreenState extends State<WorkoutTimerMobileScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("modelSplit.workout.exercise.name"),
+          Text(widget.exercise.title),
           Row(
             children: [
               Text(
-                "modelSplit.workout.exercise.reps reps",
+                "${modelLevel.repsPerSet} reps",
               ),
               const SizedBox(
                 width: 20,
               ),
-              Text("modelSplit.workout.exercise.sets sets")
+              Text("${modelLevel.sets} sets")
             ],
           ),
           Container(
@@ -38,7 +64,7 @@ class _WorkoutTimerMobileScreenState extends State<WorkoutTimerMobileScreen> {
             decoration: BoxDecoration(
               color: primaryAppColor,
             ),
-            child: const Text("Description"),
+            child: Text(widget.exercise.description),
           )
         ],
       ),

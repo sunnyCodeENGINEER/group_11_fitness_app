@@ -32,6 +32,8 @@ class Level {
   }
 }
 
+Level modelLevel = Level(0, "name", "0", "0");
+
 class UserDetails {
   String username;
   String password;
