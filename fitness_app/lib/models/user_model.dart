@@ -32,7 +32,7 @@ class Level {
   }
 }
 
-Level modelLevel = Level(0, "name", "0", "0");
+Level modelLevel = Level(1, "name", "0", "0");
 
 class UserDetails {
   String username;

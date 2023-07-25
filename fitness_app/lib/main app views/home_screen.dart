@@ -1,9 +1,13 @@
+import 'package:fitness_app/main%20app%20views/profile_screen.dart';
 import 'package:fitness_app/main%20app%20views/workout_screen.dart';
 import 'package:fitness_app/models/app_banner_model.dart';
 import 'package:fitness_app/models/database_connection.dart';
+import 'package:fitness_app/models/nutrition_model.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:fitness_app/models/user_model.dart';
 import 'package:fitness_app/models/workout_model.dart';
+import 'package:fitness_app/pie%20chart/pie_chart_screen.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,12 +53,14 @@ class _HomeMobileScreenState extends State<HomeMobileScreen> {
                 children: [
                   Text(
                     'Good Morning ',
-                    style: headerOne,
+                    style: headerTwo,
                   ),
                   Text(
                     modelUser.lastname.toUpperCase(),
-                    style: largeTitleBlack,
+                    style: headerOne,
                   ),
+                  Expanded(child: SizedBox()),
+                  ProfileButton()
                 ],
               ),
             ),
@@ -65,7 +71,9 @@ class _HomeMobileScreenState extends State<HomeMobileScreen> {
                 style: subheadingBlack,
               ),
             ),
-            AppBanner(list: weeklyWorkouts),
+            AppBanner(
+              list: weeklyWorkouts,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Text(
@@ -73,7 +81,10 @@ class _HomeMobileScreenState extends State<HomeMobileScreen> {
                 style: subheadingBlack,
               ),
             ),
-            AppBanner(list: mealBannerList)
+            AppBanner(
+              list: dailyFood,
+              meal: true,
+            )
           ],
         ),
       ),
@@ -83,8 +94,9 @@ class _HomeMobileScreenState extends State<HomeMobileScreen> {
 
 class AppBanner extends StatefulWidget {
   final List list;
+  final bool meal;
   // final  _selectedIndex = 0;
-  const AppBanner({super.key, required this.list});
+  const AppBanner({super.key, required this.list, this.meal = false});
 
   @override
   State<AppBanner> createState() => _AppBannerState();
@@ -122,13 +134,26 @@ class _AppBannerState extends State<AppBanner> {
                     )),
                 child: InkWell(
                     onTap: () async {
-                      exercisesInWorkout =
-                          await getExercisesInWorkout(widget.list[index].id);
-                      for (var i in exercisesInWorkout) {
-                        print(i.title);
-                        modelWorkout = widget.list[index];
+                      if (widget.meal == false) {
+                        exercisesInWorkout =
+                            await getExercisesInWorkout(widget.list[index].id);
+                        for (var i in exercisesInWorkout) {
+                          print(i.title);
+                          modelWorkout = widget.list[index];
+                        }
+                        Get.to(const WorkOutScreen());
+                      } else {
+                        print(widget.list[index].id);
+                        ingredientsInFood =
+                            await getIngredientsInFood(widget.list[index].id);
+                        for (var i in ingredientsInFood) {
+                          print(ingredientsInFood.length);
+                          print(i.name);
+                          // modelWorkout = widget.list[index];
+                        }
+                        Get.to(const PieChartMobileScreen());
                       }
-                      Get.to(const WorkOutScreen());
+                      // Get.to(const WorkOutScreen());
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -183,6 +208,28 @@ class Indicator extends StatelessWidget {
       decoration: BoxDecoration(
           color: isActive ? Colors.purple : Colors.grey,
           borderRadius: BorderRadius.circular(8.0)),
+    );
+  }
+}
+
+class ProfileButton extends StatefulWidget {
+  const ProfileButton({super.key});
+
+  @override
+  State<ProfileButton> createState() => _ProfileButtonState();
+}
+
+class _ProfileButtonState extends State<ProfileButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: IconButton(
+        icon: const Icon(Icons.person_pin),
+        iconSize: 40,
+        onPressed: () {
+          Get.to(const ProfileScreen());
+        },
+      ),
     );
   }
 }

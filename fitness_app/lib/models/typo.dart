@@ -7,6 +7,12 @@ TextStyle largeTitle = const TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+TextStyle largeTitlePurple = TextStyle(
+  color: primaryAppColor,
+  fontSize: 40,
+  fontWeight: FontWeight.bold,
+);
+
 TextStyle largeTitleBlack = const TextStyle(
   color: Colors.black,
   fontSize: 40,
@@ -27,7 +33,7 @@ TextStyle headerOne = const TextStyle(
 
 TextStyle headerOnePrimaryColor = TextStyle(
   color: primaryAppColor,
-  fontSize: 30,
+  fontSize: 15,
   fontWeight: FontWeight.bold,
 );
 

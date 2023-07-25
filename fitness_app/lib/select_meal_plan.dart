@@ -1,5 +1,6 @@
 import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/fill_profile_screen.dart';
+import 'package:fitness_app/models/nutrition_model.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:fitness_app/select_workout_split.dart';
 import 'package:flutter/material.dart';
@@ -47,14 +48,14 @@ class SelectMealPlanMobileScreen extends StatefulWidget {
 
 class _SelectMealPlanMobileScreenState
     extends State<SelectMealPlanMobileScreen> {
-  String selectedValue = 'Omnivorous';
+  String selectedValue = '1';
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = const [
-      DropdownMenuItem(value: "Omnivorous", child: Text("Omnivorous")),
-      DropdownMenuItem(value: "Carnivorous", child: Text("Carnivorous")),
-      DropdownMenuItem(value: "Vegetarian", child: Text("Vegetarian")),
-      DropdownMenuItem(value: "Custom", child: Text("Custom")),
+      DropdownMenuItem(value: "1", child: Text("Sample Meal Plan")),
+      // DropdownMenuItem(value: "Carnivorous", child: Text("Carnivorous")),
+      // DropdownMenuItem(value: "Vegetarian", child: Text("Vegetarian")),
+      DropdownMenuItem(value: "0", child: Text("Custom")),
     ];
     return menuItems;
   }
@@ -86,15 +87,15 @@ class _SelectMealPlanMobileScreenState
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MediumAppButton(level: 'Lose Weight'),
+                      MediumAppButtonPlan(level: 'Lose Weight'),
                       SizedBox(
                         width: 5,
                       ),
-                      MediumAppButton(level: 'Maintain Weight'),
+                      MediumAppButtonPlan(level: 'Maintain Weight'),
                       SizedBox(
                         width: 5,
                       ),
-                      MediumAppButton(level: 'Gain Weight'),
+                      MediumAppButtonPlan(level: 'Gain Weight'),
                       SizedBox(
                         width: 5,
                       ),
@@ -129,6 +130,7 @@ class _SelectMealPlanMobileScreenState
                         onChanged: (String? newValue) {
                           setState(() {
                             selectedValue = newValue!;
+                            modelPlan.id = int.parse(newValue);
                           });
                         },
                         items: dropdownItems),
@@ -148,7 +150,9 @@ class _SelectMealPlanMobileScreenState
                   const SizedBox(
                     height: 5,
                   ),
-                  const LargeAppButton(screen: FillProfileScreen(),),
+                  const LargeAppButton(
+                    screen: FillProfileScreen(),
+                  ),
                 ],
               )
             ],
@@ -173,11 +177,10 @@ class _SelectMealPlanDesktopScreenState
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = const [
-      DropdownMenuItem(value: "Push Pull Legs", child: Text("Push Pull Legs")),
-      DropdownMenuItem(
-          value: "Upper Lower Split", child: Text("Upper Lower Split")),
-      DropdownMenuItem(value: "Full Body", child: Text("Full Body")),
-      DropdownMenuItem(value: "Custom", child: Text("Custom")),
+      DropdownMenuItem(value: "1", child: Text("Sample Meal Plan")),
+      // DropdownMenuItem(value: "Carnivorous", child: Text("Carnivorous")),
+      // DropdownMenuItem(value: "Vegetarian", child: Text("Vegetarian")),
+      DropdownMenuItem(value: "0", child: Text("Custom")),
     ];
     return menuItems;
   }
@@ -209,7 +212,7 @@ class _SelectMealPlanDesktopScreenState
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MediumAppButton(
+                      MediumAppButtonPlan(
                         level: 'Lose Weight',
                         width: 150,
                         height: 60,
@@ -217,7 +220,7 @@ class _SelectMealPlanDesktopScreenState
                       SizedBox(
                         width: 5,
                       ),
-                      MediumAppButton(
+                      MediumAppButtonPlan(
                         level: 'Maintain Weight',
                         width: 150,
                         height: 60,
@@ -225,7 +228,7 @@ class _SelectMealPlanDesktopScreenState
                       SizedBox(
                         width: 5,
                       ),
-                      MediumAppButton(
+                      MediumAppButtonPlan(
                         level: 'Gain Weight',
                         width: 150,
                         height: 60,
@@ -259,6 +262,7 @@ class _SelectMealPlanDesktopScreenState
                         onChanged: (String? newValue) {
                           setState(() {
                             selectedValue = newValue!;
+                            modelPlan.id = int.parse(newValue);
                           });
                         },
                         items: dropdownItems),
@@ -278,10 +282,73 @@ class _SelectMealPlanDesktopScreenState
                   const SizedBox(
                     height: 5,
                   ),
-                  const LargeAppButton(screen: FillProfileScreen(),),
+                  const LargeAppButton(
+                    screen: FillProfileScreen(),
+                  ),
                 ],
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MediumAppButtonPlan extends StatefulWidget {
+  final String level;
+  final double width;
+  final double height;
+  const MediumAppButtonPlan({
+    super.key,
+    required this.level,
+    this.height = 40,
+    this.width = 100,
+  });
+
+  @override
+  State<MediumAppButtonPlan> createState() => _MediumAppButtonPlanState();
+}
+
+class _MediumAppButtonPlanState extends State<MediumAppButtonPlan> {
+  void _setLevel() {
+    setState(() {
+      switch (widget.level) {
+        case "Lose Weight":
+          modelWeightGoal.id = 3;
+          break;
+        case "Maintain Weight":
+          modelWeightGoal.id = 2;
+          break;
+        case "Gain Weight":
+          modelWeightGoal.id = 1;
+          break;
+        default:
+      }
+      print(modelWeightGoal.id);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(
+        bottom: 50,
+      ),
+      child: SizedBox(
+        width: widget.width,
+        height: widget.height,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.purple,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
+          onPressed: _setLevel,
+          child: Text(
+            widget.level,
+            style: mediumButtonText,
           ),
         ),
       ),

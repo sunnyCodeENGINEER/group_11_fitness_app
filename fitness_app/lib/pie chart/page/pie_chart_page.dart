@@ -14,17 +14,19 @@ class PieChartPageState extends State {
   int touchedIndex = -1;
 
   @override
-  Widget build(BuildContext context) => Card(
+  Widget build(BuildContext context) => Container(
         child: Column(
           children: <Widget>[
+            const SizedBox(
+              height: 60,
+            ),
             Expanded(
               child: PieChart(
                 PieChartData(
                   pieTouchData: PieTouchData(
                     touchCallback: (p0, pieTouchResponse) {
                       setState(() {
-                        if (pieTouchResponse is FlLongPressEnd
-                            ) {
+                        if (pieTouchResponse is FlLongPressEnd) {
                           touchedIndex = -1;
                         } else {
                           touchedIndex = pieTouchResponse!
@@ -39,6 +41,9 @@ class PieChartPageState extends State {
                   sections: getSections(touchedIndex),
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 120,
             ),
             const Row(
               mainAxisAlignment: MainAxisAlignment.center,

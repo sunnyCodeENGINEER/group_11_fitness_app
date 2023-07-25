@@ -4,6 +4,7 @@ import 'package:fitness_app/models/database_connection.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:fitness_app/models/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class CreateAccountScreen extends StatefulWidget {
@@ -116,6 +117,7 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
                             userDetails.password = value;
                           });
                         },
+                        obscureText: true,
                         validator: _validateInput,
                       ),
                     ),
@@ -136,6 +138,7 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
                             _confirmPassword = value;
                           });
                         },
+                        obscureText: true,
                         validator: _validateInput,
                       ),
                     ),
@@ -163,8 +166,9 @@ class _CreateAccountMobileScreenState extends State<CreateAccountMobileScreen> {
           Center(
             child: Column(
               children: [
-                const LargeAppButtonCreate(
-                  screen: GenderSelectScreen(),
+                LargeAppButtonCreate(
+                  screen: const GenderSelectScreen(),
+                  confirmPassword: _confirmPassword,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -283,6 +287,7 @@ class _CreateAccountDesktopScreenState
                               userDetails.password = value;
                             });
                           },
+                          obscureText: true,
                           validator: _validateInput,
                         ),
                       ),
@@ -303,6 +308,7 @@ class _CreateAccountDesktopScreenState
                               _confirmPassword = value;
                             });
                           },
+                          obscureText: true,
                           validator: _validateInput,
                         ),
                       ),
@@ -325,8 +331,9 @@ class _CreateAccountDesktopScreenState
                       const SizedBox(
                         height: 15,
                       ),
-                      const LargeAppButtonCreate(
-                        screen: GenderSelectScreen(),
+                      LargeAppButtonCreate(
+                        screen: const GenderSelectScreen(),
+                        confirmPassword: _confirmPassword,
                       ),
                       // const SizedBox(
                       //   height: 15,
@@ -407,22 +414,24 @@ String? _validateInput(String? value) {
 }
 
 class LargeAppButtonCreate extends StatefulWidget {
+  final confirmPassword;
   final Widget screen;
 
-  const LargeAppButtonCreate({super.key, required this.screen});
+  const LargeAppButtonCreate(
+      {super.key, required this.screen, required this.confirmPassword});
 
   @override
   State<LargeAppButtonCreate> createState() => _LargeAppButtonCreateState();
 }
 
 class _LargeAppButtonCreateState extends State<LargeAppButtonCreate> {
-  void _navigate() {
-    
-    bool newUser = checkIfUserExists(userDetails.username) as bool;
-    if (newUser) {
-      Get.to(widget.screen);
+  Future<void> _navigate() async {
+    if (userDetails.password == widget.confirmPassword) {
+      bool newUser = await checkIfUserExists(userDetails.username);
+      if (newUser) {
+        Get.to(widget.screen);
+      }
     }
-    
   }
 
   @override
@@ -443,4 +452,17 @@ class _LargeAppButtonCreateState extends State<LargeAppButtonCreate> {
       ),
     );
   }
+}
+
+void showToastMessage(String message) {
+  // Fluttertoast.showToast(
+  //   msg: message,
+  //   toastLength: Toast.LENGTH_SHORT, // Duration: Toast.LENGTH_SHORT or Toast.LENGTH_LONG
+  //   gravity: ToastGravity.BOTTOM, // Position: ToastGravity.TOP, ToastGravity.CENTER, or ToastGravity.BOTTOM
+  //   timeInSecForIosWeb: 1, // Time duration (only for iOS and web)
+  //   backgroundColor: Colors.black54, // Background color
+  //   textColor: Colors.white, // Text color
+  //   fontSize: 16.0, // Font size
+  // );
+  Fluttertoast.showToast(msg: message);
 }

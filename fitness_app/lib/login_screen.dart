@@ -1,6 +1,7 @@
 import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/main%20app%20views/home_screen.dart';
 import 'package:fitness_app/models/database_connection.dart';
+import 'package:fitness_app/models/nutrition_model.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:fitness_app/models/user_model.dart';
 import 'package:fitness_app/models/workout_model.dart';
@@ -110,6 +111,7 @@ class _LoginMobileScreenState extends State<LoginMobileScreen> {
                         onChanged: (value) {
                           userDetails.password = value;
                         },
+                        obscureText: true,
                       ),
                     ),
                     const SizedBox(
@@ -259,6 +261,7 @@ class _LoginDesktopScreenState extends State<LoginDesktopScreen> {
                           onChanged: (value) {
                             userDetails.password = value;
                           },
+                          obscureText: true,
                         ),
                       ),
                       const SizedBox(
@@ -342,25 +345,37 @@ class _LargeAppButtonLoginState extends State<LargeAppButtonLogin> {
     if (userID != null) {
       modelUser = await getUserData(userID) ?? modelUser;
       userDetails.splitID = await getSplitID(userID) ?? 0;
+      modelPlan.id = await getMealPlanID(userID) ?? 0;
+      modelPlan = await getMealPlan(modelPlan.id) ?? modelPlan;
       modelSplit = await getSplit(userDetails.splitID) ?? modelSplit;
       weeklyWorkouts = [];
-      weeklyWorkouts.add(await getWorkout(modelSplit.monday) ?? modelWorkout);
-      weeklyWorkouts.add(await getWorkout(modelSplit.tuesday) ?? modelWorkout);
-      weeklyWorkouts
-          .add(await getWorkout(modelSplit.wednesday) ?? modelWorkout);
-      weeklyWorkouts.add(await getWorkout(modelSplit.thursday) ?? modelWorkout);
-      weeklyWorkouts.add(await getWorkout(modelSplit.friday) ?? modelWorkout);
-      weeklyWorkouts.add(await getWorkout(modelSplit.saturday) ?? modelWorkout);
-      weeklyWorkouts.add(await getWorkout(modelSplit.sunday) ?? modelWorkout);
+      if (modelSplit.name != "name") {
+        weeklyWorkouts.add(await getWorkout(modelSplit.monday) ?? modelWorkout);
+        weeklyWorkouts
+            .add(await getWorkout(modelSplit.tuesday) ?? modelWorkout);
+        weeklyWorkouts
+            .add(await getWorkout(modelSplit.wednesday) ?? modelWorkout);
+        weeklyWorkouts
+            .add(await getWorkout(modelSplit.thursday) ?? modelWorkout);
+        weeklyWorkouts.add(await getWorkout(modelSplit.friday) ?? modelWorkout);
+        weeklyWorkouts
+            .add(await getWorkout(modelSplit.saturday) ?? modelWorkout);
+        weeklyWorkouts.add(await getWorkout(modelSplit.sunday) ?? modelWorkout);
+      }
+      dailyFood = [];
+      if (modelPlan.name != "name") {
+        dailyFood.add(await getFood(modelPlan.breakfast) ?? modelFood);
+        dailyFood.add(await getFood(modelPlan.lunch) ?? modelFood);
+        dailyFood.add(await getFood(modelPlan.dinner) ?? modelFood);
+      }
+      modelWeightGoal = await getWeightGoal(userID) ?? modelWeightGoal;
+      modelLevel = await getUserLevel(userID) ?? modelLevel;
       Get.to(widget.screen);
     }
-    print(userID);
-    print(userDetails.password);
-    print(userDetails.splitID);
-    print(modelSplit.name);
-    for (var i in weeklyWorkouts) {
-      print(i.name + "\n");
-    }
+    // for (var i in weeklyWorkouts) {
+    // }
+    // for (var i in dailyFood) {
+    // }
   }
 
   @override

@@ -4,15 +4,15 @@ class PieData {
   static List<Data> data = [
     Data(
         name: 'Protein',
-        percent: 40,
+        percent: proteinPercent,
         color: const Color.fromARGB(255, 199, 2, 238)),
     Data(
         name: 'Carbohydrates',
-        percent: 50,
+        percent: carbsPercent,
         color: const Color.fromARGB(255, 247, 154, 236)),
     Data(
         name: 'Fats',
-        percent: 20,
+        percent: fatsPercent,
         color: const Color.fromARGB(255, 121, 4, 92)),
     //Data(name: 'Green', percent: 15, color: const Color(0xff13d38e)),
   ];
@@ -27,3 +27,7 @@ class Data {
 
   Data({required this.name, required this.percent, required this.color});
 }
+
+double proteinPercent = 40;
+double fatsPercent = 40;
+double carbsPercent = 40;

@@ -6,6 +6,8 @@ import 'package:fitness_app/models/workout_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../models/nutrition_model.dart';
+
 class WorkOutScreen extends StatefulWidget {
   const WorkOutScreen({super.key});
 
@@ -53,11 +55,12 @@ class _WorkOutMobileScreenState extends State<WorkOutMobileScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 50,
-                          width: 50,
-                          child: Container(color: Colors.black),
-                        ),
+                        // SizedBox(
+                        //   height: 50,
+                        //   width: 50,
+                        //   child: Container(color: Colors.black),
+                        // ),
+                        const BackButton(),
                         Text(
                           modelWorkout.name,
                           style: largeTitle,
@@ -198,11 +201,12 @@ class _WorkOutDesktopScreenState extends State<WorkOutDesktopScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              height: 50,
-                              width: 50,
-                              child: Container(color: Colors.black),
-                            ),
+                            // SizedBox(
+                            //   height: 50,
+                            //   width: 50,
+                            //   child: Container(color: Colors.black),
+                            // ),
+                            const BackButton(),
                             const SizedBox(
                               height: 10,
                             ),
@@ -319,18 +323,20 @@ class _WorkOutDesktopScreenState extends State<WorkOutDesktopScreen> {
 class MyListTile extends StatefulWidget {
   final String title;
   final String unit_1;
-  final String unit_2;
+  final String? unit_2;
   final String reps;
-  final dynamic sets;
-  final Exercise exercise;
+  final dynamic? sets;
+  final Exercise? exercise;
+  final Ingredient? ingredient;
   const MyListTile(
       {super.key,
       required this.title,
       required this.reps,
-      required this.sets,
+      this.sets,
       required this.unit_1,
-      required this.unit_2,
-      required this.exercise});
+      this.unit_2,
+      this.exercise,
+      this.ingredient});
 
   @override
   State<MyListTile> createState() => _MyListTileState();
@@ -341,7 +347,9 @@ class _MyListTileState extends State<MyListTile> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(WorkOutTimerScreen(exercise: widget.exercise));
+        if (widget.exercise != null) {
+          Get.to(WorkOutTimerScreen(exercise: widget.exercise!));
+        }
       },
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -359,9 +367,12 @@ class _MyListTileState extends State<MyListTile> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              widget.title,
-              style: headerOnePrimaryColor,
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: Text(
+                widget.title,
+                style: headerOnePrimaryColor,
+              ),
             ),
             Row(
               children: [
@@ -376,8 +387,10 @@ class _MyListTileState extends State<MyListTile> {
                 ),
                 Column(
                   children: [
-                    Text(widget.unit_2),
-                    Text(widget.sets.toString()),
+                    Text(widget.unit_2 ?? ""),
+                    Text(widget.sets.toString() == "null"
+                        ? ""
+                        : widget.sets.toString()),
                   ],
                 ),
               ],
@@ -385,6 +398,23 @@ class _MyListTileState extends State<MyListTile> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class BackButton extends StatefulWidget {
+  const BackButton({super.key});
+
+  @override
+  State<BackButton> createState() => _BackButtonState();
+}
+
+class _BackButtonState extends State<BackButton> {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.chevron_left),
+      onPressed: () => Get.back(),
     );
   }
 }

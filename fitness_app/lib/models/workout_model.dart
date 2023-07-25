@@ -71,7 +71,7 @@ class Exercise {
 }
 
 Split modelSplit = Split(
-  id: 0,
+  id: 1,
   name: "name",
   monday: 0,
   tuesday: 0,
