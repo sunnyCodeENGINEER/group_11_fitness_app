@@ -414,7 +414,7 @@ String? _validateInput(String? value) {
 }
 
 class LargeAppButtonCreate extends StatefulWidget {
-  final confirmPassword;
+  final String confirmPassword;
   final Widget screen;
 
   const LargeAppButtonCreate(
@@ -426,6 +426,9 @@ class LargeAppButtonCreate extends StatefulWidget {
 
 class _LargeAppButtonCreateState extends State<LargeAppButtonCreate> {
   Future<void> _navigate() async {
+    if (userDetails.password.isEmpty || widget.confirmPassword.isEmpty) {
+      return;
+    }
     if (userDetails.password == widget.confirmPassword) {
       bool newUser = await checkIfUserExists(userDetails.username);
       if (newUser) {

@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:fitness_app/create_account_screen.dart';
+import 'package:fitness_app/models/app_colors.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:fitness_app/models/user_model.dart';
 import 'package:fitness_app/select_meal_plan.dart';
@@ -36,14 +37,14 @@ class SelectWorkoutSplitMobileScreen extends StatefulWidget {
 
 class _SelectWorkoutSplitMobileScreenState
     extends State<SelectWorkoutSplitMobileScreen> {
-  String selectedValue = '2';
+  String selectedValue = '0';
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = const [
       DropdownMenuItem(value: "2", child: Text("Push Pull Legs")),
       DropdownMenuItem(value: "1", child: Text("Upper Lower Split")),
       DropdownMenuItem(value: "3", child: Text("Full Body")),
-      DropdownMenuItem(value: "0", child: Text("Custom")),
+      DropdownMenuItem(value: "0", child: Text("None")),
     ];
     return menuItems;
   }
@@ -72,24 +73,118 @@ class _SelectWorkoutSplitMobileScreenState
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MediumAppButton(level: 'Beginner'),
-                      SizedBox(
+                      // MediumAppButton(
+                      //   level: 'Beginner',
+                      //   opacity: userDetails.levelID == 2 ? 1 : 0.5,
+                      // ),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
+                      // MediumAppButton(
+                      //   level: 'Intermediate',
+                      //   width: 120,
+                      //   opacity: userDetails.levelID == 3 ? 1 : 0.5,
+                      // ),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
+                      // MediumAppButton(
+                      //   level: 'Advanced',
+                      //   opacity: userDetails.levelID == 4 ? 1 : 0.5,
+                      // ),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 100,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple.withOpacity(
+                                  userDetails.levelID == 2 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                userDetails.levelID = 2;
+                              });
+                            },
+                            child: Text(
+                              "Beginner",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
                         width: 5,
                       ),
-                      MediumAppButton(
-                        level: 'Intermediate',
-                        width: 120,
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 120,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple.withOpacity(
+                                  userDetails.levelID == 3 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                userDetails.levelID = 3;
+                              });
+                            },
+                            child: Text(
+                              "Intermediate",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      MediumAppButton(level: 'Advanced'),
-                      SizedBox(
-                        width: 5,
-                      ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 100,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple.withOpacity(
+                                  userDetails.levelID == 4 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                userDetails.levelID = 4;
+                              });
+                            },
+                            child: Text(
+                              "Advanced",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   Text(
@@ -164,14 +259,14 @@ class SelectWorkoutSplitDesktopScreen extends StatefulWidget {
 
 class _SelectWorkoutSplitDesktopScreenState
     extends State<SelectWorkoutSplitDesktopScreen> {
-  String selectedValue = '2';
+  String selectedValue = '0';
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = const [
       DropdownMenuItem(value: "2", child: Text("Push Pull Legs")),
       DropdownMenuItem(value: "1", child: Text("Upper Lower Split")),
       DropdownMenuItem(value: "3", child: Text("Full Body")),
-      DropdownMenuItem(value: "0", child: Text("Custom")),
+      DropdownMenuItem(value: "0", child: Text("None")),
     ];
     return menuItems;
   }
@@ -200,33 +295,96 @@ class _SelectWorkoutSplitDesktopScreenState
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MediumAppButton(
-                        level: 'Beginner',
-                        width: 150,
-                        height: 60,
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 100,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple.withOpacity(
+                                  userDetails.levelID == 2 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                userDetails.levelID = 2;
+                              });
+                            },
+                            child: Text(
+                              "Beginner",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      MediumAppButton(
-                        level: 'Intermediate',
-                        width: 150,
-                        height: 60,
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 120,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple.withOpacity(
+                                  userDetails.levelID == 3 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                userDetails.levelID = 3;
+                              });
+                            },
+                            child: Text(
+                              "Intermediate",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      MediumAppButton(
-                        level: 'Advanced',
-                        width: 150,
-                        height: 60,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 100,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple.withOpacity(
+                                  userDetails.levelID == 4 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                userDetails.levelID = 4;
+                              });
+                            },
+                            child: Text(
+                              "Advanced",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   Text(
@@ -290,12 +448,13 @@ class MediumAppButton extends StatefulWidget {
   final String level;
   final double width;
   final double height;
-  const MediumAppButton({
-    super.key,
-    required this.level,
-    this.height = 40,
-    this.width = 100,
-  });
+  double opacity;
+  MediumAppButton(
+      {super.key,
+      required this.level,
+      this.height = 40,
+      this.width = 100,
+      this.opacity = 0.3});
 
   @override
   State<MediumAppButton> createState() => _MediumAppButtonState();
@@ -330,7 +489,7 @@ class _MediumAppButtonState extends State<MediumAppButton> {
         height: widget.height,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.purple,
+            backgroundColor: Colors.purple.withOpacity(widget.opacity),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),

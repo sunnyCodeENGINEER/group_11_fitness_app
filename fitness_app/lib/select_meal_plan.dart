@@ -84,21 +84,108 @@ class _SelectMealPlanMobileScreenState
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MediumAppButtonPlan(level: 'Lose Weight'),
-                      SizedBox(
+                      // MediumAppButtonPlan(level: 'Lose Weight'),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
+                      // MediumAppButtonPlan(level: 'Maintain Weight'),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
+                      // MediumAppButtonPlan(level: 'Gain Weight'),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 100,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple
+                                  .withOpacity(modelWeightGoal.id == 3 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                modelWeightGoal.id = 3;
+                              });
+                            },
+                            child: Text(
+                              "Loose Weight",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
                         width: 5,
                       ),
-                      MediumAppButtonPlan(level: 'Maintain Weight'),
-                      SizedBox(
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 120,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple
+                                  .withOpacity(modelWeightGoal.id == 2 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                modelWeightGoal.id = 2;
+                              });
+                            },
+                            child: Text(
+                              "Maintain Weight",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
                         width: 5,
                       ),
-                      MediumAppButtonPlan(level: 'Gain Weight'),
-                      SizedBox(
-                        width: 5,
-                      ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 100,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple
+                                  .withOpacity(modelWeightGoal.id == 1 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                modelWeightGoal.id = 1;
+                              });
+                            },
+                            child: Text(
+                              "Gain Weight",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   Text(
@@ -173,7 +260,7 @@ class SelectMealPlanDesktopScreen extends StatefulWidget {
 
 class _SelectMealPlanDesktopScreenState
     extends State<SelectMealPlanDesktopScreen> {
-  String selectedValue = 'Push Pull Legs';
+  String selectedValue = '0';
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = const [
@@ -209,33 +296,120 @@ class _SelectMealPlanDesktopScreenState
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MediumAppButtonPlan(
-                        level: 'Lose Weight',
-                        width: 150,
-                        height: 60,
+                      // MediumAppButtonPlan(
+                      //   level: 'Lose Weight',
+                      //   width: 150,
+                      //   height: 60,
+                      // ),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
+                      // MediumAppButtonPlan(
+                      //   level: 'Maintain Weight',
+                      //   width: 150,
+                      //   height: 60,
+                      // ),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
+                      // MediumAppButtonPlan(
+                      //   level: 'Gain Weight',
+                      //   width: 150,
+                      //   height: 60,
+                      // ),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 100,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple
+                                  .withOpacity(modelWeightGoal.id == 3 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                modelWeightGoal.id = 3;
+                              });
+                            },
+                            child: Text(
+                              "Loose Weight",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      MediumAppButtonPlan(
-                        level: 'Maintain Weight',
-                        width: 150,
-                        height: 60,
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 120,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple
+                                  .withOpacity(modelWeightGoal.id == 2 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                modelWeightGoal.id = 2;
+                              });
+                            },
+                            child: Text(
+                              "Maintain Weight",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      MediumAppButtonPlan(
-                        level: 'Gain Weight',
-                        width: 150,
-                        height: 60,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 50,
+                        ),
+                        child: SizedBox(
+                          width: 100,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.purple
+                                  .withOpacity(modelWeightGoal.id == 1 ? 1 : 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                modelWeightGoal.id = 1;
+                              });
+                            },
+                            child: Text(
+                              "Gain Weight",
+                              style: mediumButtonText,
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   Text(

@@ -1,5 +1,6 @@
 import 'package:fitness_app/age_select_view.dart';
 import 'package:fitness_app/create_account_screen.dart';
+import 'package:fitness_app/models/app_colors.dart';
 import 'package:fitness_app/models/database_connection.dart';
 import 'package:fitness_app/models/typo.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,14 @@ class GenderSelectMobileScreen extends StatefulWidget {
 }
 
 class _GenderSelectMobileScreenState extends State<GenderSelectMobileScreen> {
+  String userGender = '';
+
+  void updateUserGender(String gender) {
+    setState(() {
+      userGender = gender;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,32 +62,83 @@ class _GenderSelectMobileScreenState extends State<GenderSelectMobileScreen> {
                   'What is your Gender?',
                   style: headerTwo,
                 ),
-                // const GenderCard(
+              ],
+            ),
+            Column(
+              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // GenderCard(
                 //   icon: Icons.male,
                 //   gender: 'Male',
+                //   userGender: userGender,
+                //   color: userGender == 'Male' ? primaryAppColor : Colors.white,
                 // ),
                 // const SizedBox(
                 //   height: 20,
                 // ),
-                // const GenderCard(
+                // GenderCard(
                 //   icon: Icons.female,
                 //   gender: 'Female',
+                //   userGender: userGender,
+                //   color:
+                //       userGender == 'Female' ? primaryAppColor : Colors.white,
                 // ),
-              ],
-            ),
-            const Column(
-              children: [
-                GenderCard(
-                  icon: Icons.male,
-                  gender: 'Male',
+                InkWell(
+                  onTap: () {
+                    updateUserGender("Male");
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 3),
+                      borderRadius: BorderRadius.circular(10),
+                      color:
+                          userGender == "Male" ? primaryAppColor : Colors.white,
+                    ),
+                    child: Column(
+                      children: [
+                        const Icon(
+                          Icons.male_rounded,
+                          size: 100,
+                        ),
+                        Text(
+                          "Male",
+                          style: headerOne,
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-                SizedBox(
-                  height: 20,
+                const SizedBox(
+                  width: 10,
                 ),
-                GenderCard(
-                  icon: Icons.female,
-                  gender: 'Female',
-                ),
+                InkWell(
+                  onTap: () {
+                    updateUserGender("Female");
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 3),
+                      borderRadius: BorderRadius.circular(10),
+                      color: userGender == "Female"
+                          ? primaryAppColor
+                          : Colors.white,
+                    ),
+                    child: Column(
+                      children: [
+                        const Icon(
+                          Icons.female_rounded,
+                          size: 100,
+                        ),
+                        Text(
+                          "Female",
+                          style: headerOne,
+                        )
+                      ],
+                    ),
+                  ),
+                )
               ],
             ),
             const LargeAppButton(
@@ -100,6 +160,14 @@ class GenderSelectDesktopScreen extends StatefulWidget {
 }
 
 class _GenderSelectDesktopScreenState extends State<GenderSelectDesktopScreen> {
+  String userGender = '';
+
+  void updateUserGender(String gender) {
+    setState(() {
+      userGender = gender;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,19 +191,82 @@ class _GenderSelectDesktopScreenState extends State<GenderSelectDesktopScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GenderCard(
-                    icon: Icons.male,
-                    gender: 'Male',
-                    iconSize: MediaQuery.of(context).size.width * 0.25,
+                  // GenderCard(
+                  //   icon: Icons.male,
+                  //   gender: 'Male',
+                  //   iconSize: MediaQuery.of(context).size.width * 0.25,
+                  //   userGender: userGender,
+                  //   color:
+                  //       userGender == 'Male' ? primaryAppColor : Colors.white,
+                  // ),
+                  // const SizedBox(
+                  //   width: 20,
+                  // ),
+                  // GenderCard(
+                  //   icon: Icons.female,
+                  //   gender: 'Female',
+                  //   iconSize: MediaQuery.of(context).size.width * 0.25,
+                  //   userGender: userGender,
+                  //   color:
+                  //       userGender == 'Female' ? primaryAppColor : Colors.white,
+                  // ),
+                  InkWell(
+                    onTap: () {
+                      updateUserGender("Male");
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 3),
+                        borderRadius: BorderRadius.circular(10),
+                        color: userGender == "Male"
+                            ? primaryAppColor
+                            : Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          const Icon(
+                            Icons.male_rounded,
+                            size: 100,
+                          ),
+                          Text(
+                            "Male",
+                            style: headerOne,
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     width: 20,
                   ),
-                  GenderCard(
-                    icon: Icons.female,
-                    gender: 'Female',
-                    iconSize: MediaQuery.of(context).size.width * 0.25,
-                  ),
+                  InkWell(
+                    onTap: () {
+                      updateUserGender("Female");
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 3),
+                        borderRadius: BorderRadius.circular(10),
+                        color: userGender == "Female"
+                            ? primaryAppColor
+                            : Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          const Icon(
+                            Icons.female_rounded,
+                            size: 100,
+                          ),
+                          Text(
+                            "Female",
+                            style: headerOne,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               )
             ],
@@ -150,14 +281,18 @@ class _GenderSelectDesktopScreenState extends State<GenderSelectDesktopScreen> {
 }
 
 class GenderCard extends StatefulWidget {
+  String userGender;
   final IconData icon;
   final String gender;
   final double iconSize;
-  const GenderCard(
+  Color color;
+  GenderCard(
       {super.key,
       required this.icon,
       required this.gender,
-      this.iconSize = 100});
+      this.iconSize = 100,
+      required this.userGender,
+      required this.color});
 
   @override
   State<GenderCard> createState() => _GenderCardState();
@@ -165,11 +300,12 @@ class GenderCard extends StatefulWidget {
 
 class _GenderCardState extends State<GenderCard> {
   bool male = false;
-  String userGender = '';
+  static String userGender = '';
 
   void genderSelect() {
     setState(() {
       userGender = widget.gender;
+      print(widget.userGender);
       runDatabaseQuery();
     });
   }
@@ -183,6 +319,7 @@ class _GenderCardState extends State<GenderCard> {
         decoration: BoxDecoration(
           border: Border.all(width: 3),
           borderRadius: BorderRadius.circular(10),
+          color: userGender == widget.gender ? primaryAppColor : Colors.white,
         ),
         child: Column(
           children: [
@@ -192,7 +329,7 @@ class _GenderCardState extends State<GenderCard> {
             ),
             Text(
               widget.gender,
-              style: headerTwo,
+              style: headerOne,
             )
           ],
         ),

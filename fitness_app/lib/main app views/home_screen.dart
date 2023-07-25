@@ -92,6 +92,68 @@ class _HomeMobileScreenState extends State<HomeMobileScreen> {
   }
 }
 
+class HomeDesktopScreen extends StatefulWidget {
+  const HomeDesktopScreen({super.key});
+
+  @override
+  State<HomeDesktopScreen> createState() => _HomeDesktopScreenState();
+}
+
+class _HomeDesktopScreenState extends State<HomeDesktopScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(top: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    'Good Morning ',
+                    style: headerTwo,
+                  ),
+                  Text(
+                    modelUser.lastname.toUpperCase(),
+                    style: headerOne,
+                  ),
+                  Expanded(child: SizedBox()),
+                  ProfileButton()
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Text(
+                'Upcoming workouts',
+                style: subheadingBlack,
+              ),
+            ),
+            AppBanner(
+              list: weeklyWorkouts,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Text(
+                'Upcoming meals',
+                style: subheadingBlack,
+              ),
+            ),
+            AppBanner(
+              list: dailyFood,
+              meal: true,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class AppBanner extends StatefulWidget {
   final List list;
   final bool meal;
