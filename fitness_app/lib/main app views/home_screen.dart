@@ -59,8 +59,8 @@ class _HomeMobileScreenState extends State<HomeMobileScreen> {
                     modelUser.lastname.toUpperCase(),
                     style: headerOne,
                   ),
-                  Expanded(child: SizedBox()),
-                  ProfileButton()
+                  const Expanded(child: SizedBox()),
+                  const ProfileButton()
                 ],
               ),
             ),
@@ -121,8 +121,8 @@ class _HomeDesktopScreenState extends State<HomeDesktopScreen> {
                     modelUser.lastname.toUpperCase(),
                     style: headerOne,
                   ),
-                  Expanded(child: SizedBox()),
-                  ProfileButton()
+                  const Expanded(child: SizedBox()),
+                  const ProfileButton()
                 ],
               ),
             ),
@@ -146,13 +146,14 @@ class _HomeDesktopScreenState extends State<HomeDesktopScreen> {
             AppBanner(
               list: dailyFood,
               meal: true,
-            )
+            ),
           ],
         ),
       ),
     );
   }
 }
+
 
 class AppBanner extends StatefulWidget {
   final List list;
@@ -229,8 +230,20 @@ class _AppBannerState extends State<AppBanner> {
                             Padding(
                               padding: const EdgeInsets.all(10),
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(widget.list[index].name.toUpperCase())
+                                  Column(
+                                    children: [
+                                      Text(
+                                        widget.meal
+                                            ? widget.list[index].time
+                                            : "",
+                                        style: mediumButtonText,
+                                      ),
+                                      Text(
+                                          widget.list[index].name.toUpperCase())
+                                    ],
+                                  )
                                 ],
                               ),
                             )
