@@ -2,6 +2,7 @@ import 'package:fitness_app/age_select_view.dart';
 import 'package:fitness_app/create_account_screen.dart';
 import 'package:fitness_app/fill_profile_screen.dart';
 import 'package:fitness_app/gender_select_screen.dart';
+import 'package:fitness_app/main%20app%20views/create_split.dart';
 import 'package:fitness_app/main%20app%20views/home_screen.dart';
 import 'package:fitness_app/login_screen.dart';
 import 'package:fitness_app/main%20app%20views/splash_screen.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.purple,
       ),
-      home: const SplashScreen(),
+      home: const CreateSplitScreen(),
     );
   }
 }

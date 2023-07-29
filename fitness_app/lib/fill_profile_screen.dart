@@ -281,7 +281,7 @@ class _LargeAppButtonCreateState extends State<LargeAppButtonCreate> {
 
   void _navigate() {
     addUser(userDetails.username, userDetails.password, userDetails.levelID,
-        userDetails.splitID, userDetails.user.toList());
+        userDetails.splitID, modelUser.toList());
     // runDatabaseQuery();
     //  createAccount();
     print(modelUser.email);
@@ -293,6 +293,7 @@ class _LargeAppButtonCreateState extends State<LargeAppButtonCreate> {
     print(userDetails.password);
     print(userDetails.user.toList());
     print("successful");
+    print(modelUser.toList());
     Get.to(widget.screen);
   }
 

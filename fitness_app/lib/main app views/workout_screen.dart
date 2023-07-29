@@ -368,7 +368,7 @@ class _MyListTileState extends State<MyListTile> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
+              width: MediaQuery.of(context).size.width * 0.3,
               child: Text(
                 widget.title,
                 style: headerOnePrimaryColor,
